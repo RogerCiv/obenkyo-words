@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
-import Card from "../components/Card";
+
 import { dataN5 } from "../data/dataN5";
 import NavigationButtons from "../components/NavigationButtons";
+import KnowledgeButtons from "../components/KnowledgeButtons";
+import VocabularyCardDisplay from "../components/VocabularyCardDisplay";
 
 const STORAGE_KEY = "noken_known";
 
@@ -61,32 +63,24 @@ export default function Noken5Page() {
 
   return (
     <div className="flex flex-col items-center justify-center h-full">
+{/* 
+      <h1 className="text-4xl">Vocabulario Noken 5</h1> */}
 
-      <h1 className="text-4xl">Vocabulario Noken 5</h1>
-
-      {currentCard && (
-        <div className="mb-8">
+      {/* {currentCard && (
+        <div className={`mb-8 p-4 rounded shadow-lg transition-colors duration-300
+          ${knownStatus === true ? 'bg-green-100 border border-green-400' : knownStatus === false ? 'bg-red-100 border border-red-400' : 'bg-white'}`}>
           <Card japanese={currentCard.japanese} spanish={currentCard.spanish} romanji={currentCard.romanji} />
         </div>
-      )}
+      )} */}
+      <VocabularyCardDisplay cardData={currentCard} knownStatus={knownStatus} level="5" />
       <NavigationButtons onPrevious={goToPreviousCard} onNext={goToNextCard} isPreviousDisabled={currentIndex === 0} isNextDisabled={currentIndex === dataN5.length - 1} />
 
-      <div className="flex space-x-4 mt-4">
-        <button
-          onClick={markAsKnown}
-          className={`bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ${knownStatus === true ? 'opacity-70 cursor-not-allowed' : ''}`}
-          disabled={knownStatus === true}
-        >
-          Me la sé
-        </button>
-        <button
-          onClick={markAsNotKnown}
-          className={`bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ${knownStatus === false ? 'opacity-70 cursor-not-allowed' : ''}`}
-          disabled={knownStatus === false}
-        >
-          No me la sé
-        </button>
-      </div>
+
+      <KnowledgeButtons
+        onKnown={markAsKnown}
+        onNotKnown={markAsNotKnown}
+        isKnown={knownStatus}
+      />
       <div className="mt-10">
         <span>Tarjeta {currentIndex + 1} de {dataN5.length}</span>
       </div>
