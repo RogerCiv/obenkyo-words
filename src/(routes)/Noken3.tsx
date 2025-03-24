@@ -23,7 +23,7 @@ export default function Noken3Page() {
     <VocabularyPageContent
       cardData={currentCard}
       knownStatus={knownStatus}
-      level="5"
+      level="3"
       onPrevious={goToPreviousCard}
       onNext={goToNextCard}
       isPreviousDisabled={currentIndex === 0}
