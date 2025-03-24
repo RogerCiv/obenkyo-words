@@ -1,10 +1,11 @@
 import VocabularyCardDisplay from "./VocabularyCardDisplay";
 import NavigationButtons from "./NavigationButtons";
 import KnowledgeButtons from "./KnowledgeButtons";
+import type { VocabularyCardType } from "../types/vocabularyTypes";
 
 interface Props {
-  cardData: any;
-  knownStatus: any;
+  cardData: VocabularyCardType;
+  knownStatus: boolean | null;
   level: string;
   onPrevious: () => void;
   onNext: () => void;

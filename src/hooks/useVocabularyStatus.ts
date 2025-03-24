@@ -1,12 +1,13 @@
 // src/hooks/useVocabularyStatus.ts
 import { useState, useEffect } from 'react';
-import { VocabularyCard } from '../data/dataN5'; // Importa la interfaz si es necesario
+import { VocabularyCardType } from '../types/vocabularyTypes';
+
 
 const STORAGE_KEY = "noken_known";
 
 interface UseVocabularyStatusProps {
   level: string;
-  currentCard: VocabularyCard | undefined | null;
+  currentCard: VocabularyCardType | undefined | null;
 }
 
 const useVocabularyStatus = ({ level, currentCard }: UseVocabularyStatusProps) => {

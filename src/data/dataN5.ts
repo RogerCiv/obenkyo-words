@@ -1,11 +1,12 @@
+import { VocabularyCardType } from "../types/vocabularyTypes";
 
-export interface VocabularyCard {
-  japanese: string;
-  romanji: string;
-  spanish: string;
-}
+// export interface VocabularyCard {
+//   japanese: string;
+//   romanji: string;
+//   spanish: string;
+// }
 
-export const dataN5: VocabularyCard[]  = [
+export const dataN5: VocabularyCardType[]  = [
   { japanese: 'おはよう', romanji: 'ohayou', spanish: 'Buenos días' },
   { japanese: 'こんにちは', romanji: 'konnichiwa', spanish: 'Buenas tardes' },
   { japanese: 'こんばんは', romanji: 'konbanwa', spanish: 'Buenas noches' },

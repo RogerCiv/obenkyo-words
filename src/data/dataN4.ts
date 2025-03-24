@@ -1,7 +1,6 @@
-// src/data/dataN4.ts
-import { VocabularyCard } from './dataN5'; // Importamos la interfaz para asegurar la estructura
+import { VocabularyCardType } from "../types/vocabularyTypes";
 
-export const dataN4: VocabularyCard[] = [
+export const dataN4: VocabularyCardType[] = [
   { japanese: '会う', romanji: 'au', spanish: 'Encontrarse con (alguien)' },
   { japanese: '青い', romanji: 'aoi', spanish: 'Azul' },
   { japanese: '赤い', romanji: 'akai', spanish: 'Rojo' },
