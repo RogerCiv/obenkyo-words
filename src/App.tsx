@@ -2,6 +2,7 @@
 import { Link, Route, Routes } from 'react-router-dom'
 import HomePage from './(routes)/Home'
 import Noken5Page from './(routes)/Noken5'
+import Noken4Page from './(routes)/Noken4'
 
 function App() {
 
@@ -17,7 +18,7 @@ function App() {
             <Link to="/noken-5">Nivel N5</Link>
           </li>
           <li>
-            <Link to="/n4">Nivel N4</Link>
+            <Link to="/noken-4">Nivel N4</Link>
           </li>
           <li>
             <Link to="/n3">Nivel N3</Link>
@@ -34,8 +35,8 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} /> {/* Define el componente para la ruta principal */}
           <Route path="/noken-5" element={<Noken5Page />} /> {/* Define el componente para el nivel N5 */}
-          {/* <Route path="/n4" element={<N4Level />} />
-        <Route path="/n3" element={<N3Level />} />
+          <Route path="/noken-4" element={<Noken4Page />} />
+        {/* <Route path="/n3" element={<N3Level />} />
         <Route path="/n2" element={<N2Level />} />
         <Route path="/n1" element={<N1Level />} /> */}
         </Routes>

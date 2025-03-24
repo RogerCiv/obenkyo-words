@@ -12,8 +12,6 @@ const LEVEL_N5 = 'Noken5';
 export default function Noken5Page() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const currentCard = dataN5[currentIndex];
-  // const [knownStatus, setKnownStatus] = useState<boolean | null>(null); // null: desconocido, true: me la sé
-
   const { knownStatus, markAsKnown, markAsNotKnown } = useVocabularyStatus({
     level: LEVEL_N5,
     currentCard: currentCard,
