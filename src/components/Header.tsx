@@ -2,19 +2,12 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import VocabularyNavItems from "./VocabularyNavItems";
 
-const nokenLinks = [
-  { to: "/noken-5", label: "Noken 5" },
-  { to: "/noken-4", label: "Noken 4" },
-  { to: "/noken-3", label: "Noken 3" },
-  { to: "/noken-2", label: "Noken 2" },
-  { to: "/noken-1", label: "Noken 1" },
-]
 
 const Header = () => {
   const { user } = useAuth();
   return (
-    <header className="container mx-auto">
-      <div className="navbar bg-base-100 shadow-sm">
+    <header className=" navbar bg-base-200  shadow-sm">
+      <div className="container mx-auto flex items-center justify-center ">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -25,21 +18,12 @@ const Header = () => {
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
               <li><a href="/">Home</a></li>
               <li>
-                <details>
-                  <summary>Vocabulario</summary>
-                  <ul className="p-2">
-                    {nokenLinks.map((link) => (
-                      <li key={link.to}>
-                        <Link to={link.to}>{link.label}</Link>
-                      </li>
-                    ))}
-                  </ul>
-                </details>
+                <VocabularyNavItems />
               </li>
               <li><a>Item 3</a></li>
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl">daisyUI</a>
+          <a className="btn btn-ghost text-xl">Obenkyo <span className="text-accent">Vocabulary</span></a>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
@@ -64,6 +48,7 @@ const Header = () => {
         </div>
       </div>
     </header>
+
   );
 }
 

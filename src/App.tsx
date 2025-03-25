@@ -8,6 +8,7 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import { AuthProvider } from './context/AuthContext'
 import Layout from './components/Layout'  // New layout component
+import NotFound from './pages/NotFound'
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
               <Route path="/noken-4" element={<Noken4Page />} />
               <Route path="/noken-3" element={<Noken3Page />} />
             </Route>
+            <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
       </BrowserRouter>
