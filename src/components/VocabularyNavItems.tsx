@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom"
 
 const nokenLinks = [
-  { to: "/noken-5", label: "Noken 5" },
-  { to: "/noken-4", label: "Noken 4" },
-  { to: "/noken-3", label: "Noken 3" },
-  { to: "/noken-2", label: "Noken 2" },
-  { to: "/noken-1", label: "Noken 1" },
+  { to: "/nokens/noken-5", label: "Noken 5" },
+  { to: "/nokens/noken-4", label: "Noken 4" },
+  { to: "/nokens/noken-3", label: "Noken 3" },
+  { to: "/nokens/noken-2", label: "Noken 2" },
+  { to: "/nokens/noken-1", label: "Noken 1" },
 ]
 
 

@@ -9,6 +9,7 @@ import Register from './pages/Register'
 import { AuthProvider } from './context/AuthContext'
 import Layout from './components/Layout'  // New layout component
 import NotFound from './pages/NotFound'
+import NokensPage from './pages/NokensPage'
 
 function App() {
   return (
@@ -16,13 +17,16 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route element={<Layout />}>
-          <Route path="/" element={<HomePage />} />
+            <Route path="/" element={<HomePage />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route element={<ProtectedRoutes />}>
-              <Route path="/noken-5" element={<Noken5Page />} />
-              <Route path="/noken-4" element={<Noken4Page />} />
-              <Route path="/noken-3" element={<Noken3Page />} />
+            <Route path="/nokens">
+              <Route index element={<NokensPage />} />
+              <Route element={<ProtectedRoutes />}>
+                <Route path="noken-5" element={<Noken5Page />} />
+                <Route path="noken-4" element={<Noken4Page />} />
+                <Route path="noken-3" element={<Noken3Page />} />
+              </Route>
             </Route>
             <Route path="*" element={<NotFound />} />
           </Route>
