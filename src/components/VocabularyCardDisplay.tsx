@@ -14,7 +14,7 @@ export default function VocabularyCardDisplay(props: VocabularyCardDisplayProps)
       <h1 className="text-4xl">Vocabulario Noken {level}</h1>
       <div className={`mb-8 p-4 rounded shadow-lg transition-colors duration-300
         ${knownStatus === true ? 'bg-green-100 border border-green-400' : knownStatus === false ? 'bg-red-100 border border-red-400' : 'bg-white'}`}>
-          <Card japanese={cardData.expression} spanish={cardData.meaning} romanji={cardData.reading} />
+          <Card expression={cardData.expression} meaning={cardData.meaning} reading={cardData.reading} />
       </div>
     </div>
   )

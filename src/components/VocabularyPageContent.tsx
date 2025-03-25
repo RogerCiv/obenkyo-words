@@ -33,11 +33,11 @@ export default function VocabularyPageContent({
   return (
     <div className="flex flex-col items-center justify-center h-full">
       <VocabularyCardDisplay cardData={cardData} knownStatus={knownStatus} level={level} />
-      <NavigationButtons 
-        onPrevious={onPrevious} 
-        onNext={onNext} 
-        isPreviousDisabled={isPreviousDisabled} 
-        isNextDisabled={isNextDisabled} 
+      <NavigationButtons
+        onPrevious={onPrevious}
+        onNext={onNext}
+        isPreviousDisabled={isPreviousDisabled}
+        isNextDisabled={isNextDisabled}
       />
       <KnowledgeButtons
         onKnown={onKnown}
