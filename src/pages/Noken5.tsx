@@ -2,11 +2,12 @@ import { useState, useEffect } from "react";
 import { fetchN5Vocabulary } from "../data/vocabularyData";
 import useVocabularyStatus from "../hooks/useVocabularyStatus";
 import VocabularyPageContent from "../components/VocabularyPageContent";
+import { VocabularyCardType } from "../types/vocabularyTypes";
 
 const LEVEL_N5 = 'Noken5';
 
 export default function Noken5Page() {
-  const [vocabularyCards, setVocabularyCards] = useState([]);
+  const [vocabularyCards, setVocabularyCards] = useState<VocabularyCardType[]>([]);;
   const [currentIndex, setCurrentIndex] = useState(0);
   const [loading, setLoading] = useState(true);
 
