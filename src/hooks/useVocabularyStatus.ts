@@ -18,7 +18,7 @@ const useVocabularyStatus = ({ level, currentCard }: UseVocabularyStatusProps) =
       const storedData = localStorage.getItem(STORAGE_KEY);
       const knownLevels = storedData ? JSON.parse(storedData) : {};
       const levelData = knownLevels[level] || {};
-      const status = levelData[currentCard.japanese];
+      const status = levelData[currentCard.expression];
       if (status === true) {
         setKnownStatus(true);
       } else if (status === false) {
@@ -34,7 +34,7 @@ const useVocabularyStatus = ({ level, currentCard }: UseVocabularyStatusProps) =
       const storedData = localStorage.getItem(STORAGE_KEY);
       const knownLevels = storedData ? JSON.parse(storedData) : {};
       const levelData = knownLevels[level] || {};
-      levelData[currentCard.japanese] = true;
+      levelData[currentCard.expression] = true;
       knownLevels[level] = levelData;
       localStorage.setItem(STORAGE_KEY, JSON.stringify(knownLevels));
       setKnownStatus(true);
@@ -46,7 +46,7 @@ const useVocabularyStatus = ({ level, currentCard }: UseVocabularyStatusProps) =
       const storedData = localStorage.getItem(STORAGE_KEY);
       const knownLevels = storedData ? JSON.parse(storedData) : {};
       const levelData = knownLevels[level] || {};
-      levelData[currentCard.japanese] = false;
+      levelData[currentCard.expression] = false;
       knownLevels[level] = levelData;
       localStorage.setItem(STORAGE_KEY, JSON.stringify(knownLevels));
       setKnownStatus(false);

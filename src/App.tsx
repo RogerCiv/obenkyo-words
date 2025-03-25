@@ -1,10 +1,12 @@
 
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom'
-import HomePage from './(routes)/Home'
-import Noken5Page from './(routes)/Noken5'
-import Noken4Page from './(routes)/Noken4'
-import Noken3Page from './(routes)/Noken3'
+import HomePage from './pages/Home'
+import Noken5Page from './pages/Noken5'
+import Noken4Page from './pages/Noken4'
+import Noken3Page from './pages/Noken3'
 import ProtectedRoutes from './utils/protectedRoutes'
+import Login from './pages/Login'
+import Register from './pages/Register'
 
 function App() {
 
@@ -38,6 +40,9 @@ function App() {
 
           <Routes>
             <Route path="/" element={<HomePage />} /> {/* Define el componente para la ruta principal */}
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+
             <Route element={<ProtectedRoutes />}>
               <Route path="/noken-5" element={<Noken5Page />} /> {/* Define el componente para el nivel N5 */}
               <Route path="/noken-4" element={<Noken4Page />} />
