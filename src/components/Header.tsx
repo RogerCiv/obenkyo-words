@@ -1,10 +1,17 @@
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import VocabularyNavItems from "./VocabularyNavItems";
-
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    await logout();
+    navigate("/");
+  };
+
   return (
     <header className=" navbar bg-base-200  shadow-sm">
       <div className="container mx-auto flex items-center justify-center ">
@@ -37,12 +44,12 @@ const Header = () => {
         <div className="navbar-end">
           {user ? (
             <div className="flex gap-4">
-              <a className="btn">Logout</a>
+              <a className="btn" onClick={handleLogout}>Logout</a>
             </div>
           ) : (
             <div className="flex gap-4">
-              <a className="btn">Login</a>
-              <a className="btn btn-primary">Register</a>
+              <Link to="/login" className="btn">Login</Link>
+              <Link to="/register" className="btn btn-primary">Register</Link>
             </div>
           )}
         </div>
