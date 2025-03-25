@@ -4,7 +4,7 @@ import useVocabularyStatus from "../hooks/useVocabularyStatus";
 import VocabularyPageContent from "../components/VocabularyPageContent";
 import { VocabularyCardType } from "../types/vocabularyTypes";
 
-const LEVEL_N5 = 'Noken5';
+const LEVEL_N5 = 'jlpt_n5'; // Modificado de 'Noken5'
 
 export default function Noken5Page() {
   const [vocabularyCards, setVocabularyCards] = useState<VocabularyCardType[]>([]);;

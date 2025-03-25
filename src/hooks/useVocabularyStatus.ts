@@ -1,9 +1,10 @@
 // src/hooks/useVocabularyStatus.ts
 import { useState, useEffect } from 'react';
 import { VocabularyCardType } from '../types/vocabularyTypes';
+import supabase from '../utils/supabase-client';
+import { useAuth } from '../context/AuthContext';
 
-
-const STORAGE_KEY = "noken_known";
+const LEVEL_TABLE = 'user_progress';
 
 interface UseVocabularyStatusProps {
   level: string;
@@ -12,44 +13,56 @@ interface UseVocabularyStatusProps {
 
 const useVocabularyStatus = ({ level, currentCard }: UseVocabularyStatusProps) => {
   const [knownStatus, setKnownStatus] = useState<boolean | null>(null);
+  const { user } = useAuth();
+  const userId = user?.id;
 
   useEffect(() => {
-    if (currentCard) {
-      const storedData = localStorage.getItem(STORAGE_KEY);
-      const knownLevels = storedData ? JSON.parse(storedData) : {};
-      const levelData = knownLevels[level] || {};
-      const status = levelData[currentCard.expression];
-      if (status === true) {
-        setKnownStatus(true);
-      } else if (status === false) {
-        setKnownStatus(false);
-      } else {
-        setKnownStatus(null);
+    if (currentCard && userId) {
+      async function fetchStatus() {
+        const { data, error } = await supabase  
+          .from(LEVEL_TABLE)
+          .select('known')
+          .eq('user_id', userId)
+          .eq('level', level)
+          .eq('card_expression', currentCard?.expression)
+          .maybeSingle(); // changed from .single() to .maybeSingle()
+        if (!error && data) {
+          setKnownStatus(data.known);
+        } else {
+          setKnownStatus(null);
+        }
       }
+      fetchStatus();
     }
-  }, [level, currentCard]);
+  }, [level, currentCard, userId]);
 
-  const markAsKnown = () => {
-    if (currentCard) {
-      const storedData = localStorage.getItem(STORAGE_KEY);
-      const knownLevels = storedData ? JSON.parse(storedData) : {};
-      const levelData = knownLevels[level] || {};
-      levelData[currentCard.expression] = true;
-      knownLevels[level] = levelData;
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(knownLevels));
-      setKnownStatus(true);
+  const markAsKnown = async () => {
+    if (currentCard && userId) {
+      const { error } = await supabase
+        .from(LEVEL_TABLE)
+        .upsert({
+          user_id: userId,
+          level: level,
+          card_expression: currentCard.expression,
+          known: true,
+          updated_at: new Date(),
+        }, { onConflict: 'user_id,level,card_expression' }); // changed from array to string
+      if (!error) setKnownStatus(true);
     }
   };
 
-  const markAsNotKnown = () => {
-    if (currentCard) {
-      const storedData = localStorage.getItem(STORAGE_KEY);
-      const knownLevels = storedData ? JSON.parse(storedData) : {};
-      const levelData = knownLevels[level] || {};
-      levelData[currentCard.expression] = false;
-      knownLevels[level] = levelData;
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(knownLevels));
-      setKnownStatus(false);
+  const markAsNotKnown = async () => {
+    if (currentCard && userId) {
+      const { error } = await supabase
+        .from(LEVEL_TABLE)
+        .upsert({
+          user_id: userId,
+          level: level,
+          card_expression: currentCard.expression,
+          known: false,
+          updated_at: new Date(),
+        }, { onConflict: 'user_id,level,card_expression' }); // changed from array to string
+      if (!error) setKnownStatus(false);
     }
   };
 
