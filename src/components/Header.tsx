@@ -29,7 +29,7 @@ const Header = () => {
               <li><a>Item 3</a></li>
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl">Obenkyo <span className="text-accent">Vocabulary</span></a>
+          <a className="btn btn-ghost text-xl">Noken <span className="text-accent">Vocabulary</span></a>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
