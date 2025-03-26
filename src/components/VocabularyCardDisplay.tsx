@@ -1,20 +1,40 @@
+
+
 import { VocabularyCardType } from "../types/vocabularyTypes";
 import Card from "./Card";
+import IconsNavigate from "./IconsNavigate";
 
 interface VocabularyCardDisplayProps {
   cardData: VocabularyCardType;
   knownStatus: boolean | null;
   level: string;
+  onPrevious: () => void;
+  onNext: () => void;
+  isPreviousDisabled: boolean;
+  isNextDisabled: boolean;
+
 }
 
 export default function VocabularyCardDisplay(props: VocabularyCardDisplayProps) {
-  const { cardData, knownStatus, level } = props;
+  const { cardData, knownStatus, level, isNextDisabled, isPreviousDisabled, onNext, onPrevious } = props;
   return (
     <div className="flex flex-col items-center justify-center h-full gap-10">
       <h1 className="text-4xl">Vocabulario Noken {level}</h1>
-      <div className={`mb-8 p-4 rounded shadow-lg transition-colors duration-300
-        ${knownStatus === true ? 'bg-green-100 border border-green-400' : knownStatus === false ? 'bg-red-100 border border-red-400' : 'bg-white'}`}>
-          <Card expression={cardData.expression} meaning={cardData.meaning} reading={cardData.reading} />
+      <div className="flex flex-col gap-4">
+
+        <div className={`mb-8 p-4 rounded shadow-lg transition-colors duration-300
+        ${knownStatus === true ? 'bg-success border border-success-content' : knownStatus === false ? 'bg-error border border-error-content' : 'bg-base-content'}`}>
+
+          <Card expression={cardData.expression} meaning={cardData.meaning} reading={cardData.reading} status={knownStatus} />
+
+          <IconsNavigate
+            knownStatus={knownStatus}
+            onPrevious={onPrevious}
+            onNext={onNext}
+            isPreviousDisabled={isPreviousDisabled}
+            isNextDisabled={isNextDisabled}
+          />
+        </div>
       </div>
     </div>
   )

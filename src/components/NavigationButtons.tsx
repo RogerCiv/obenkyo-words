@@ -10,7 +10,7 @@ export default function NavigationButtons(props: NavigationButtonsProps) {
 
 
   return (
-    <div className="flex space-x-4">
+    <div className="flex space-x-4 mt-4">
       <button
         onClick={onPrevious}
         disabled={isPreviousDisabled}

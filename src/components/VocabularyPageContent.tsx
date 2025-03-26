@@ -1,5 +1,4 @@
 import VocabularyCardDisplay from "./VocabularyCardDisplay";
-import NavigationButtons from "./NavigationButtons";
 import KnowledgeButtons from "./KnowledgeButtons";
 import type { VocabularyCardType } from "../types/vocabularyTypes";
 
@@ -32,18 +31,21 @@ export default function VocabularyPageContent({
 }: Props) {
   return (
     <div className="flex flex-col items-center justify-center h-full">
-      <VocabularyCardDisplay cardData={cardData} knownStatus={knownStatus} level={level} />
-      <NavigationButtons
+      <VocabularyCardDisplay cardData={cardData} knownStatus={knownStatus} level={level} 
         onPrevious={onPrevious}
         onNext={onNext}
         isPreviousDisabled={isPreviousDisabled}
         isNextDisabled={isNextDisabled}
       />
-      <KnowledgeButtons
-        onKnown={onKnown}
-        onNotKnown={onNotKnown}
-        isKnown={knownStatus}
-      />
+      <div className="flex flex-col items-center justify-center gap-4">
+
+        <KnowledgeButtons
+          onKnown={onKnown}
+          onNotKnown={onNotKnown}
+          isKnown={knownStatus}
+        />
+      </div>
+
       <div className="mt-10">
         <span>Tarjeta {currentIndex + 1} de {totalCards}</span>
       </div>
