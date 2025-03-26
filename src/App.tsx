@@ -11,6 +11,8 @@ import Layout from './components/Layout'  // New layout component
 import NotFound from './pages/NotFound'
 import NokensPage from './pages/NokensPage'
 import { AuthProvider } from './context/AuthProvider'
+import Noken2Page from './pages/Noken2'
+import Noken1Page from './pages/Noken1'
 
 function App() {
   return (
@@ -27,6 +29,8 @@ function App() {
                 <Route path="noken-5" element={<Noken5Page />} />
                 <Route path="noken-4" element={<Noken4Page />} />
                 <Route path="noken-3" element={<Noken3Page />} />
+                <Route path="noken-2" element={<Noken2Page />} />
+                <Route path="noken-1" element={<Noken1Page />} />
               </Route>
             </Route>
             <Route path="*" element={<NotFound />} />
