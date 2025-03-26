@@ -2,7 +2,8 @@
 import { useState, useEffect } from 'react';
 import { VocabularyCardType } from '../types/vocabularyTypes';
 import supabase from '../utils/supabase-client';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from './useAuth';
+
 
 const LEVEL_TABLE = 'user_progress';
 

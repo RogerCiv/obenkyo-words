@@ -6,10 +6,11 @@ import Noken3Page from './pages/Noken3'
 import ProtectedRoutes from './utils/protectedRoutes'
 import Login from './pages/Login'
 import Register from './pages/Register'
-import { AuthProvider } from './context/AuthContext'
+
 import Layout from './components/Layout'  // New layout component
 import NotFound from './pages/NotFound'
 import NokensPage from './pages/NokensPage'
+import { AuthProvider } from './context/AuthProvider'
 
 function App() {
   return (
