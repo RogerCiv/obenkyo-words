@@ -70,7 +70,10 @@ const useVocabularyStatus = ({ level, currentCard }: UseVocabularyStatusProps) =
           known: true,
           updated_at: new Date(),
         }, { onConflict: 'user_id,level,card_expression' });
-      if (!error) setKnownStatus(true);
+      if (!error) {
+        setKnownStatus(true);
+        setWordsStatusMap(prev => ({ ...prev, [currentCard.expression]: true }));
+      }
     }
   };
 
@@ -85,7 +88,10 @@ const useVocabularyStatus = ({ level, currentCard }: UseVocabularyStatusProps) =
           known: false,
           updated_at: new Date(),
         }, { onConflict: 'user_id,level,card_expression' });
-      if (!error) setKnownStatus(false);
+      if (!error) {
+        setKnownStatus(false);
+        setWordsStatusMap(prev => ({ ...prev, [currentCard.expression]: false }));
+      }
     }
   };
 
