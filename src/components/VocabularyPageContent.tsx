@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import VocabularyCardDisplay from "./VocabularyCardDisplay";
 import KnowledgeButtons from "./KnowledgeButtons";
 import Pagination from "./Pagination";
@@ -48,6 +48,12 @@ export default function VocabularyPageContent({
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = vocabularyList.slice(indexOfFirstItem, indexOfLastItem);
 
+  // Actualiza currentPage cuando currentIndex cambia
+  useEffect(() => {
+    setCurrentPage(Math.floor(currentIndex / itemsPerPage) + 1);
+  }, [currentIndex]);
+
+  // Nueva función para manejar el cambio de página  
   const handlePageChange = (pageNumber: number) => {
     setCurrentPage(pageNumber);
   };
@@ -94,9 +100,15 @@ export default function VocabularyPageContent({
               Palabras del Nivel {level}
             </li>
             {currentItems.map((word, index) => {
+              const fullIndex = indexOfFirstItem + index;
               const wordStatus = vocabularyStatusMap[word.expression] ?? word.knownStatus!;
               return (
-                <li key={index} className={`list-row flex items-center ${getTextColor(wordStatus)}`}>
+                <li
+                  key={index}
+                  className={`list-row flex items-center ${getTextColor(wordStatus)} ${
+                    fullIndex === currentIndex ? "border-3 border-accent" : ""
+                  }`}
+                >
                   <div className="grow px-4 flex justify-between items-center">
                     <p className="font-bold text-secondary text-xl">
                       {word.expression}
