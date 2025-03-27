@@ -39,7 +39,7 @@ export default function VocabularyPageContent({
   vocabularyStatusMap,
 }: Props) {
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 20;
+  const itemsPerPage = 10;
 
   // Pagination logic
   const totalPages = Math.ceil(vocabularyList.length / itemsPerPage);
