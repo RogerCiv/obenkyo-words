@@ -18,7 +18,7 @@ interface Props {
   currentIndex: number;
   totalCards: number;
   onWordSelect: (word: VocabularyCardType) => void;
-  vocabularyStatusMap: { [expression: string]: boolean | null }; 
+  vocabularyStatusMap: { [expression: string]: boolean | null };
   getTextColor: (status: boolean | null) => string;
 }
 
@@ -62,9 +62,10 @@ export default function VocabularyPageContent({
     <div className="flex flex-col w-full gap-6 py-10">
       {/* Heading centered above both sections */}
       <h1 className="text-3xl md:text-4xl lg:text-5xl text-center mb-4">
-        Vocabulario <span className="text-accent font-semibold">Noken {level}</span>
+        Vocabulario <span className="text-accent font-semibold">Noken {level} </span>
+
       </h1>
-      
+
       <div className="flex w-full flex-col lg:flex-row gap-4">
         {/* Left side: Vocabulary Card */}
         <div className="w-full lg:w-1/2">
@@ -91,7 +92,7 @@ export default function VocabularyPageContent({
         </div>
 
         {/* Divider */}
-        <div className="divider lg:divider-horizontal divider-accent"/>
+        <div className="divider lg:divider-horizontal divider-accent" />
 
         {/* Right side: Word List */}
         <div className="w-full lg:w-1/2 ">
@@ -105,9 +106,8 @@ export default function VocabularyPageContent({
               return (
                 <li
                   key={index}
-                  className={`list-row flex items-center ${getTextColor(wordStatus)} ${
-                    fullIndex === currentIndex ? "border-3 border-accent" : ""
-                  }`}
+                  className={`list-row flex items-center ${getTextColor(wordStatus)} ${fullIndex === currentIndex ? "border-3 border-accent" : ""
+                    }`}
                 >
                   <div className="grow px-4 flex justify-between items-center">
                     <p className="font-bold text-secondary text-xl">

@@ -7,7 +7,7 @@ import ProtectedRoutes from './utils/protectedRoutes'
 import Login from './pages/Login'
 import Register from './pages/Register'
 
-import Layout from './components/Layout'  // New layout component
+import Layout from './components/Layout'  
 import NotFound from './pages/NotFound'
 import NokensPage from './pages/NokensPage'
 import { AuthProvider } from './context/AuthProvider'
