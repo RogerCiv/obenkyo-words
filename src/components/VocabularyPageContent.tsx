@@ -38,7 +38,6 @@ export default function VocabularyPageContent({
         isNextDisabled={isNextDisabled}
       />
       <div className="flex flex-col items-center justify-center gap-4">
-
         <KnowledgeButtons
           onKnown={onKnown}
           onNotKnown={onNotKnown}
@@ -47,7 +46,7 @@ export default function VocabularyPageContent({
       </div>
 
       <div className="mt-10">
-        <span>Tarjeta {currentIndex + 1} de {totalCards}</span>
+        <p>Tarjeta {currentIndex + 1} de {totalCards}</p>
       </div>
     </div>
   );

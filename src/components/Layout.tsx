@@ -1,5 +1,6 @@
 import { Outlet } from 'react-router-dom'
 import Header from './Header'
+import Footer from './Footer'
 
 const Layout = () => (
   <div className='flex flex-col bg-base-200'>
@@ -7,9 +8,7 @@ const Layout = () => (
     <main className='flex-grow'>
       <Outlet />
     </main>
-    <footer>
-      Footer provisional
-    </footer>
+   <Footer />
   </div>
 )
 
