@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import VocabularyCardDisplay from "./VocabularyCardDisplay";
 import KnowledgeButtons from "./KnowledgeButtons";
+import Pagination from "./Pagination";
 import type { VocabularyCardType } from "../types/vocabularyTypes";
 
 interface Props {
@@ -41,93 +42,15 @@ export default function VocabularyPageContent({
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
-  // Pagination logic
+  // Lógica de paginación
   const totalPages = Math.ceil(vocabularyList.length / itemsPerPage);
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = vocabularyList.slice(indexOfFirstItem, indexOfLastItem);
 
-  // Pagination display logic
-  const renderPaginationButtons = () => {
-    const buttons = [];
-    const visiblePages = 5; // Total number of page buttons to show
-    const halfVisiblePages = Math.floor(visiblePages / 2);
-
-    let startPage = Math.max(1, currentPage - halfVisiblePages);
-    const endPage = Math.min(totalPages, startPage + visiblePages - 1);
-
-    // Adjust start and end pages to always show 5 buttons
-    if (endPage - startPage + 1 < visiblePages) {
-      startPage = Math.max(1, endPage - visiblePages + 1);
-    }
-
-    // First page button
-    if (startPage > 1) {
-      buttons.push(
-        <button
-          key="first"
-          className="join-item btn"
-          onClick={() => handlePageChange(1)}
-        >
-          1
-        </button>
-      );
-      if (startPage > 2) {
-        buttons.push(
-          <button
-            key="first-ellipsis"
-            className="join-item btn btn-disabled"
-          >
-            ...
-          </button>
-        );
-      }
-    }
-
-    // Middle page buttons
-    for (let page = startPage; page <= endPage; page++) {
-      buttons.push(
-        <button
-          key={page}
-          className={`join-item btn ${currentPage === page ? 'btn-active' : ''}`}
-          onClick={() => handlePageChange(page)}
-        >
-          {page}
-        </button>
-      );
-    }
-
-    // Last page buttons
-    if (endPage < totalPages) {
-      if (endPage < totalPages - 1) {
-        buttons.push(
-          <button
-            key="last-ellipsis"
-            className="join-item btn btn-disabled"
-          >
-            ...
-          </button>
-        );
-      }
-      buttons.push(
-        <button
-          key="last"
-          className="join-item btn"
-          onClick={() => handlePageChange(totalPages)}
-        >
-          {totalPages}
-        </button>
-      );
-    }
-
-    return buttons;
-  };
-
   const handlePageChange = (pageNumber: number) => {
     setCurrentPage(pageNumber);
-    console.log("status", knownStatus);
   };
-
 
   return (
     <div className="flex w-full flex-col lg:flex-row gap-4 py-10">
@@ -150,7 +73,6 @@ export default function VocabularyPageContent({
               isKnown={knownStatus ?? null}
             />
           </div>
-
           <div className="mt-10">
             <p>Tarjeta {currentIndex + 1} de {totalCards}</p>
           </div>
@@ -167,8 +89,6 @@ export default function VocabularyPageContent({
             Palabras del Nivel {level}
           </li>
           {currentItems.map((word, index) => {
-            // Determina el estado de la palabra: se prefiere el valor obtenido en vocabularyStatusMap,
-            // en caso de no existir se usa el valor almacenado en la propiedad knownStatus de la palabra.
             const wordStatus = vocabularyStatusMap[word.expression] ?? word.knownStatus!;
             return (
               <li key={index} className="list-row flex items-center">
@@ -194,11 +114,8 @@ export default function VocabularyPageContent({
             );
           })}
         </ul>
-
-        {/* Pagination */}
-        <div className="join mt-4 flex justify-center">
-          {renderPaginationButtons()}
-        </div>
+        {/* Paginación */}
+        <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
       </div>
     </div>
   );
