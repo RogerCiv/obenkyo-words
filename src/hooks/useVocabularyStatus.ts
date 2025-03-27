@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import { VocabularyCardType } from '../types/vocabularyTypes';
 import supabase from '../utils/supabase-client';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from './useAuth';
 
 const LEVEL_TABLE = 'user_progress';
 
@@ -16,16 +16,17 @@ const useVocabularyStatus = ({ level, currentCard }: UseVocabularyStatusProps) =
   const { user } = useAuth();
   const userId = user?.id;
 
+  // Consulta el estado de la tarjeta actual
   useEffect(() => {
     if (currentCard && userId) {
       async function fetchStatus() {
-        const { data, error } = await supabase  
+        const { data, error } = await supabase
           .from(LEVEL_TABLE)
           .select('known')
           .eq('user_id', userId)
           .eq('level', level)
           .eq('card_expression', currentCard?.expression)
-          .maybeSingle(); // changed from .single() to .maybeSingle()
+          .maybeSingle();
         if (!error && data) {
           setKnownStatus(data.known);
         } else {
@@ -35,6 +36,28 @@ const useVocabularyStatus = ({ level, currentCard }: UseVocabularyStatusProps) =
       fetchStatus();
     }
   }, [level, currentCard, userId]);
+
+  // Nueva consulta para obtener el estado de cada palabra
+  const [wordsStatusMap, setWordsStatusMap] = useState<{ [expression: string]: boolean | null }>({});
+  useEffect(() => {
+    if (user) {
+      async function loadWordsStatus() {
+        const { data, error } = await supabase
+          .from(LEVEL_TABLE)
+          .select("card_expression, known")
+          .eq("user_id", user?.id)
+          .eq("level", level);
+        if (!error && data) {
+          const map: { [expression: string]: boolean | null } = {};
+          data.forEach((row: any) => {
+            map[row.card_expression] = row.known;
+          });
+          setWordsStatusMap(map);
+        }
+      }
+      loadWordsStatus();
+    }
+  }, [user, level]);
 
   const markAsKnown = async () => {
     if (currentCard && userId) {
@@ -46,8 +69,11 @@ const useVocabularyStatus = ({ level, currentCard }: UseVocabularyStatusProps) =
           card_expression: currentCard.expression,
           known: true,
           updated_at: new Date(),
-        }, { onConflict: 'user_id,level,card_expression' }); // changed from array to string
-      if (!error) setKnownStatus(true);
+        }, { onConflict: 'user_id,level,card_expression' });
+      if (!error) {
+        setKnownStatus(true);
+        setWordsStatusMap(prev => ({ ...prev, [currentCard.expression]: true }));
+      }
     }
   };
 
@@ -61,12 +87,22 @@ const useVocabularyStatus = ({ level, currentCard }: UseVocabularyStatusProps) =
           card_expression: currentCard.expression,
           known: false,
           updated_at: new Date(),
-        }, { onConflict: 'user_id,level,card_expression' }); // changed from array to string
-      if (!error) setKnownStatus(false);
+        }, { onConflict: 'user_id,level,card_expression' });
+      if (!error) {
+        setKnownStatus(false);
+        setWordsStatusMap(prev => ({ ...prev, [currentCard.expression]: false }));
+      }
     }
   };
 
-  return { knownStatus, markAsKnown, markAsNotKnown };
+  const getTextColor = (status?: boolean | null): string => {
+    if (status === true) return "bg-success/50";
+    if (status === false) return "bg-error/50";
+   
+    return "bg-info/50";
+  };
+
+  return { knownStatus, markAsKnown, markAsNotKnown, getTextColor, wordsStatusMap };
 };
 
 export default useVocabularyStatus;

@@ -1,0 +1,15 @@
+import { Outlet } from 'react-router-dom'
+import Header from './Header'
+import Footer from './Footer'
+
+const Layout = () => (
+  <div className='flex flex-col bg-base-200'>
+    <Header />
+    <main className='flex-grow'>
+      <Outlet />
+    </main>
+   <Footer />
+  </div>
+)
+
+export default Layout

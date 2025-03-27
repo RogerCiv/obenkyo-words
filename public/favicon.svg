@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 200 200" 
+     width="200" height="200">
+
+
+  <rect x="0" y="0"
+        width="200" height="200" 
+        fill="white" />
+
+  <text
+    x="100" 
+    y="100" 
+    dominant-baseline="middle"
+    text-anchor="middle"
+    font-family='"Hiragino Kaku Gothic ProN", "Meiryo", "Yu Gothic", "MS PGothic", "Noto Sans JP", sans-serif'
+    font-size="80"
+    fill="black">
+    勉強
+  </text>
+
+</svg>

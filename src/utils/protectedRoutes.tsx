@@ -1,5 +1,6 @@
 import { Navigate, Outlet } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../hooks/useAuth";
+
 
 const ProtectedRoutes = () => {
 	// Cambiado: obtenemos el usuario y el estado de carga del contexto
