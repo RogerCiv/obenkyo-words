@@ -42,7 +42,7 @@ export default function VocabularyPageContent({
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
-  // Lógica de paginación
+  // Pagination
   const totalPages = Math.ceil(vocabularyList.length / itemsPerPage);
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -53,66 +53,71 @@ export default function VocabularyPageContent({
   };
 
   return (
-    <div className="flex w-full flex-col lg:flex-row gap-4 py-10">
-      {/* Left side: Vocabulary Card */}
-      <div className="w-full lg:w-1/2">
-        <div className="flex flex-col items-center justify-center h-full">
-          <VocabularyCardDisplay
-            cardData={cardData}
-            knownStatus={knownStatus}
-            level={level}
-            onPrevious={onPrevious}
-            onNext={onNext}
-            isPreviousDisabled={isPreviousDisabled}
-            isNextDisabled={isNextDisabled}
-          />
-          <div className="flex flex-col items-center justify-center gap-4">
-            <KnowledgeButtons
-              onKnown={onKnown}
-              onNotKnown={onNotKnown}
-              isKnown={knownStatus ?? null}
+    <div className="flex flex-col w-full gap-6 py-10">
+      {/* Heading centered above both sections */}
+      <h1 className="text-3xl md:text-4xl lg:text-5xl text-center mb-4">
+        Vocabulario <span className="text-accent font-semibold">Noken {level}</span>
+      </h1>
+      
+      <div className="flex w-full flex-col lg:flex-row gap-4">
+        {/* Left side: Vocabulary Card */}
+        <div className="w-full lg:w-1/2">
+          <div className="flex flex-col items-center justify-center h-full">
+            <VocabularyCardDisplay
+              cardData={cardData}
+              knownStatus={knownStatus}
+              onPrevious={onPrevious}
+              onNext={onNext}
+              isPreviousDisabled={isPreviousDisabled}
+              isNextDisabled={isNextDisabled}
             />
-          </div>
-          <div className="mt-10">
-            <p>Tarjeta {currentIndex + 1} de {totalCards}</p>
+            <div className="flex flex-col items-center justify-center gap-4">
+              <KnowledgeButtons
+                onKnown={onKnown}
+                onNotKnown={onNotKnown}
+                isKnown={knownStatus ?? null}
+              />
+            </div>
+            <div className="mt-10">
+              <p>Tarjeta {currentIndex + 1} de {totalCards}</p>
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Divider */}
-      <div className="divider lg:divider-horizontal"></div>
+        {/* Divider */}
+        <div className="divider lg:divider-horizontal"></div>
 
-      {/* Right side: Word List */}
-      <div className="w-full lg:w-1/2">
-        <ul className="list bg-base-200 rounded-box shadow-md gap-4">
-          <li className="p-4 pb-2 text-xs opacity-60 tracking-wide">
-            Palabras del Nivel {level}
-          </li>
-          {currentItems.map((word, index) => {
-            const wordStatus = vocabularyStatusMap[word.expression] ?? word.knownStatus!;
-            return (
-              <li key={index} className={`list-row flex items-center ${getTextColor(wordStatus)}`}>
-                <div className="grow px-4 flex justify-between items-center">
-                  <p className="font-bold text-secondary text-xl">
-                    {word.expression}
-                  </p>
-                </div>
-                <button
-                  className="btn btn-square btn-ghost"
-                  onClick={() => onWordSelect(word)}
-                >
-                  <svg className="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <g strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor">
-                      <path d="M6 3L20 12 6 21 6 3z"></path>
-                    </g>
-                  </svg>
-                </button>
-              </li>
-            );
-          })}
-        </ul>
-        {/* Paginación */}
-        <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
+        {/* Right side: Word List */}
+        <div className="w-full lg:w-1/2 ">
+          <ul className="list bg-base-200 rounded-box shadow-md gap-4">
+            <li className="p-4 pb-2 text-xs opacity-60 tracking-wide">
+              Palabras del Nivel {level}
+            </li>
+            {currentItems.map((word, index) => {
+              const wordStatus = vocabularyStatusMap[word.expression] ?? word.knownStatus!;
+              return (
+                <li key={index} className={`list-row flex items-center ${getTextColor(wordStatus)}`}>
+                  <div className="grow px-4 flex justify-between items-center">
+                    <p className="font-bold text-secondary text-xl">
+                      {word.expression}
+                    </p>
+                  </div>
+                  <button
+                    className="btn btn-square btn-ghost"
+                    onClick={() => onWordSelect(word)}
+                  >
+                    <svg className="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                      <g strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor">
+                        <path d="M6 3L20 12 6 21 6 3z"></path>
+                      </g>
+                    </svg>
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+          <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
+        </div>
       </div>
     </div>
   );
