@@ -20,7 +20,7 @@ const useVocabularyStatus = ({ level, currentCard }: UseVocabularyStatusProps) =
   useEffect(() => {
     if (currentCard && userId) {
       async function fetchStatus() {
-        const { data, error } = await supabase  
+        const { data, error } = await supabase
           .from(LEVEL_TABLE)
           .select('known')
           .eq('user_id', userId)
@@ -67,7 +67,13 @@ const useVocabularyStatus = ({ level, currentCard }: UseVocabularyStatusProps) =
     }
   };
 
-  return { knownStatus, markAsKnown, markAsNotKnown };
-};
+  const getTextColor = (status?: boolean | null): string => {
+    if (status === true) return "text-success";
+    if (status === false) return "text-error";
+    return "text-black";
+  };
 
-export default useVocabularyStatus;
+  return { knownStatus, markAsKnown, markAsNotKnown, getTextColor };
+
+}
+export default useVocabularyStatus
