@@ -10,7 +10,7 @@ export default function NokensPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-base-200 flex flex-col items-center justify-center">
+    <div className="min-h-screen container flex flex-col items-center justify-center">
       <h1 className="text-4xl font-bold mb-6">Selecciona tu Noken</h1>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {niveles.map((nivel) => (

@@ -22,7 +22,7 @@ export default function VocabularyCardDisplay(props: VocabularyCardDisplayProps)
       <h1 className="text-4xl">Vocabulario Noken {level}</h1>
       <div className="flex flex-col gap-4">
 
-        <div className={`mb-8 p-4 rounded shadow-lg transition-colors duration-300
+        <div className={`w-xl h-96 mb-8 p-4 rounded shadow-lg transition-colors duration-300
         ${knownStatus === true ? 'bg-success border border-success-content' : knownStatus === false ? 'bg-error border border-error-content' : 'bg-base-content'}`}>
 
           <Card expression={cardData.expression} meaning={cardData.meaning} reading={cardData.reading} status={knownStatus} />

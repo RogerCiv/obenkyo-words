@@ -47,18 +47,20 @@ export default function GenericVocabularyPage({ levelKey, displayLevel }: Generi
 	}
 
 	return (
-		<VocabularyPageContent
-			cardData={currentCard}
-			knownStatus={knownStatus}
-			level={displayLevel}
-			onPrevious={goToPreviousCard}
-			onNext={goToNextCard}
-			isPreviousDisabled={currentIndex === 0}
-			isNextDisabled={currentIndex === vocabularyCards.length - 1}
-			onKnown={markAsKnown}
-			onNotKnown={markAsNotKnown}
-			currentIndex={currentIndex}
-			totalCards={vocabularyCards.length}
-		/>
+		<section className="min-h-screen container mx-auto flex flex-col justify-center">
+			<VocabularyPageContent
+				cardData={currentCard}
+				knownStatus={knownStatus}
+				level={displayLevel}
+				onPrevious={goToPreviousCard}
+				onNext={goToNextCard}
+				isPreviousDisabled={currentIndex === 0}
+				isNextDisabled={currentIndex === vocabularyCards.length - 1}
+				onKnown={markAsKnown}
+				onNotKnown={markAsNotKnown}
+				currentIndex={currentIndex}
+				totalCards={vocabularyCards.length}
+			/>
+		</section>
 	);
 }
