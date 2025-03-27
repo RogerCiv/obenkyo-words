@@ -1,6 +1,4 @@
 import { useEffect, useState } from "react";
-import supabase from "../utils/supabase-client";
-import { useAuth } from "../hooks/useAuth";
 import useVocabularyStatus from "../hooks/useVocabularyStatus";
 import VocabularyPageContent from "../components/VocabularyPageContent";
 import { VocabularyCardType } from "../types/vocabularyTypes";
@@ -15,8 +13,7 @@ export default function GenericVocabularyPage({ levelKey, displayLevel }: Generi
 	const [vocabularyCards, setVocabularyCards] = useState<VocabularyCardType[]>([]);
 	const [currentIndex, setCurrentIndex] = useState(0);
 	const [loading, setLoading] = useState(true);
-	const { user } = useAuth();
-	const [wordsStatusMap, setWordsStatusMap] = useState<{ [expression: string]: boolean | null }>({});
+
 
 	useEffect(() => {
 		async function loadVocabulary() {
@@ -29,29 +26,9 @@ export default function GenericVocabularyPage({ levelKey, displayLevel }: Generi
 		loadVocabulary();
 	}, [levelKey]);
 
-  // Nueva consulta para obtener el estado de cada palabra
-	useEffect(() => {
-		async function loadWordsStatus() {
-      if (user && vocabularyCards.length > 0) {
-        const { data, error } = await supabase
-          .from("user_progress")
-          .select("card_expression, known")
-          .eq("user_id", user.id)
-          .eq("level", levelKey);
-        if (!error && data) {
-          const map: { [expression: string]: boolean | null } = {};
-          data.forEach((row: any) => {
-            map[row.card_expression] = row.known;
-          });
-          setWordsStatusMap(map);
-        }
-      }
-		}
-		loadWordsStatus();
-	}, [user, vocabularyCards, levelKey]);
-
 	const currentCard = vocabularyCards[currentIndex] || null;
-	const { knownStatus, markAsKnown, markAsNotKnown, getTextColor } = useVocabularyStatus({
+
+	const { knownStatus, markAsKnown, markAsNotKnown, getTextColor, wordsStatusMap } = useVocabularyStatus({
 		level: levelKey,
 		currentCard,
 	});
@@ -63,12 +40,12 @@ export default function GenericVocabularyPage({ levelKey, displayLevel }: Generi
 		setCurrentIndex(prevIndex => Math.min(prevIndex + 1, vocabularyCards.length - 1));
 	};
 
-  const handleWordSelect = (word: VocabularyCardType) => {
-    const selectedIndex = vocabularyCards.findIndex(card => card.id === word.id);
-    if (selectedIndex !== -1) {
-      setCurrentIndex(selectedIndex);
-    }
-  };
+	const handleWordSelect = (word: VocabularyCardType) => {
+		const selectedIndex = vocabularyCards.findIndex(card => card.id === word.id);
+		if (selectedIndex !== -1) {
+			setCurrentIndex(selectedIndex);
+		}
+	};
 
 	if (loading) {
 		return <div>Cargando...</div>;
@@ -94,7 +71,7 @@ export default function GenericVocabularyPage({ levelKey, displayLevel }: Generi
 				currentIndex={currentIndex}
 				totalCards={vocabularyCards.length}
 				getTextColor={getTextColor}
-        vocabularyStatusMap={wordsStatusMap}  //Nueva prop con el estado individual de cada palabra
+				vocabularyStatusMap={wordsStatusMap}  //Nueva prop con el estado individual de cada palabra
 			/>
 		</section>
 	);
