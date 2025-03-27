@@ -91,7 +91,7 @@ export default function VocabularyPageContent({
         </div>
 
         {/* Divider */}
-        <div className="divider lg:divider-horizontal"></div>
+        <div className="divider lg:divider-horizontal divider-accent"/>
 
         {/* Right side: Word List */}
         <div className="w-full lg:w-1/2 ">
