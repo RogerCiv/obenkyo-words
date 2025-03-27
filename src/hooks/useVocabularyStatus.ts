@@ -96,9 +96,10 @@ const useVocabularyStatus = ({ level, currentCard }: UseVocabularyStatusProps) =
   };
 
   const getTextColor = (status?: boolean | null): string => {
-    if (status === true) return "text-success";
-    if (status === false) return "text-error";
-    return "text-black";
+    if (status === true) return "bg-success/50";
+    if (status === false) return "bg-error/50";
+   
+    return "bg-info/50";
   };
 
   return { knownStatus, markAsKnown, markAsNotKnown, getTextColor, wordsStatusMap };

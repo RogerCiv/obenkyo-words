@@ -84,21 +84,18 @@ export default function VocabularyPageContent({
 
       {/* Right side: Word List */}
       <div className="w-full lg:w-1/2">
-        <ul className="list bg-base-200 rounded-box shadow-md">
+        <ul className="list bg-base-200 rounded-box shadow-md gap-4">
           <li className="p-4 pb-2 text-xs opacity-60 tracking-wide">
             Palabras del Nivel {level}
           </li>
           {currentItems.map((word, index) => {
             const wordStatus = vocabularyStatusMap[word.expression] ?? word.knownStatus!;
             return (
-              <li key={index} className="list-row flex items-center">
+              <li key={index} className={`list-row flex items-center ${getTextColor(wordStatus)}`}>
                 <div className="grow px-4 flex justify-between items-center">
-                  <p className={`font-semibold ${getTextColor(wordStatus)}`}>
-                    {word.reading}
+                  <p className="font-bold text-secondary text-xl">
+                    {word.expression}
                   </p>
-                  <span className={`text-xs opacity-70 ${getTextColor(wordStatus)}`}>
-                    {wordStatus === true ? 'Conocido' : wordStatus === false ? 'No conocido' : 'DEFAULT'}
-                  </span>
                 </div>
                 <button
                   className="btn btn-square btn-ghost"
