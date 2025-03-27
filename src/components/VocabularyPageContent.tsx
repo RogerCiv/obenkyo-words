@@ -3,6 +3,7 @@ import VocabularyCardDisplay from "./VocabularyCardDisplay";
 import KnowledgeButtons from "./KnowledgeButtons";
 import Pagination from "./Pagination";
 import type { VocabularyCardType } from "../types/vocabularyTypes";
+import VocabularyWordList from './VocabularyWordList';
 
 interface Props {
   cardData: VocabularyCardType;
@@ -96,38 +97,16 @@ export default function VocabularyPageContent({
 
         {/* Right side: Word List */}
         <div className="w-full lg:w-1/2 ">
-          <ul className="list bg-base-200 rounded-box shadow-md gap-4">
-            <li className="p-4 pb-2 text-xs opacity-60 tracking-wide">
-              Palabras del Nivel {level}
-            </li>
-            {currentItems.map((word, index) => {
-              const fullIndex = indexOfFirstItem + index;
-              const wordStatus = vocabularyStatusMap[word.expression] ?? word.knownStatus!;
-              return (
-                <li
-                  key={index}
-                  className={`list-row flex items-center ${getTextColor(wordStatus)} ${fullIndex === currentIndex ? "border-3 border-accent" : ""
-                    }`}
-                >
-                  <div className="grow px-4 flex justify-between items-center">
-                    <p className="font-bold text-secondary text-xl">
-                      {word.expression}
-                    </p>
-                  </div>
-                  <button
-                    className="btn btn-square btn-ghost"
-                    onClick={() => onWordSelect(word)}
-                  >
-                    <svg className="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                      <g strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor">
-                        <path d="M6 3L20 12 6 21 6 3z"></path>
-                      </g>
-                    </svg>
-                  </button>
-                </li>
-              );
-            })}
-          </ul>
+
+          <VocabularyWordList
+            level={level}
+            currentIndex={currentIndex}
+            currentItems={currentItems}
+            getTextColor={getTextColor}
+            indexOfFirstItem={indexOfFirstItem}
+            onWordSelect={onWordSelect}
+            vocabularyStatusMap={vocabularyStatusMap}
+          />
           <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
         </div>
       </div>
