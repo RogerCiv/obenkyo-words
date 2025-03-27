@@ -9,7 +9,7 @@ interface PaginationProps {
 export default function Pagination({ currentPage, totalPages, onPageChange }: PaginationProps) {
   const renderPaginationButtons = () => {
     const buttons = [];
-    const visiblePages = 2; 
+    const visiblePages = 3; 
     const halfVisiblePages = Math.floor(visiblePages / 2);
   
     let startPage = Math.max(1, currentPage - halfVisiblePages);
