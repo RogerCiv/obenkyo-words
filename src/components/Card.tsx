@@ -34,8 +34,8 @@ export default function Card({ expression, meaning, reading }: CardProps) {
         {/* Frente (japonés) */}
         <div className="flip-card-front card bg-base-100 flex flex-col items-center justify-center p-4">
           <div className="flex flex-col items-center">
-            <div className="text-base sm:text-lg md:text-xl text-base-content/60 mb-2">{reading}</div>
-            <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold">{expression}</div>
+            <div className="text-xl sm:text-lg md:text-xl font-semibold mb-2">{reading}</div>
+            <div className="text-5xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold">{expression}</div>
           </div>
         </div>
 
