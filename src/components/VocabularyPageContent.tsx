@@ -86,8 +86,10 @@ export default function VocabularyPageContent({
                 isKnown={knownStatus ?? null}
               />
             </div>
-            <div className="mt-10">
-              <p>Tarjeta {currentIndex + 1} de {totalCards}</p>
+            <div className="mt-10 bg-gray-50 border border-gray-200 rounded-lg py-2 px-4 shadow-sm text-center">
+              <p className="select-none text-lg font-medium text-gray-600">
+                Tarjeta {currentIndex + 1} de <span className='font-bold'>{totalCards}</span>
+              </p>
             </div>
           </div>
         </div>
