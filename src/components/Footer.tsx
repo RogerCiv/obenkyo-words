@@ -10,7 +10,7 @@ export default function Footer() {
           <br />
           Vocabulario en español de los noken.
         </p>
-        <p>Copyright © {new Date().getFullYear()} - All right reserved</p>
+        <p>Noken Vocabulary © {new Date().getFullYear()} -  <a href="https://rogercivdev.vercel.app/" target="_blank"  className="hover:underline hover:text-accent">RogerCiv</a> </p>
       </aside>
     </footer>
   )
