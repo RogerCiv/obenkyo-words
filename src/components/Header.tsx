@@ -21,24 +21,24 @@ const Header = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow font-semibold">
               <li><a href="/">Home</a></li>
               <li>
                 <VocabularyNavItems />
               </li>
-              <li><a>Item 3</a></li>
+              <li><Link to='/nokens'>Nokens</Link></li>
             </ul>
           </div>
         <img src="/logo.jpeg" alt="Noken Vocabulary Logo" className="rounded-full" width="50" height="50" />
-          <a className="btn btn-ghost text-xl">Noken <span className="text-accent">Vocabulary</span></a>
+          <Link className="btn btn-ghost text-xl" to="/">Noken <span className="text-accent">Vocabulary</span></Link>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">
+          <ul className="menu menu-horizontal px-1 font-semibold">
             <li><Link to="/">Home</Link></li>
             <li>
               <VocabularyNavItems />
             </li>
-            <li><a>Item 3</a></li>
+            <li><Link to='/nokens'>Nokens</Link></li>
           </ul>
         </div>
         <div className="navbar-end">
