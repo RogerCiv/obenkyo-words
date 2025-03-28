@@ -27,13 +27,14 @@ export default function VocabularyWordList(props: VocabularyWordListProps) {
               className={`list-row flex items-center ${getTextColor(wordStatus)} ${fullIndex === currentIndex ? "border-3 border-accent" : ""
                 }`}
             >
-              <div className="grow px-4 flex justify-between items-center">
-                <p className="font-bold text-secondary text-xl">
+              <div className="grow px-4 flex space-x-2  items-center">
+                <p className="font-bold text-secondary text-2xl">
                   {word.expression}
                 </p>
+                <p className="font-semibold text-lg text-secondary/70">({word.reading})</p>
               </div>
               <button
-                className="btn btn-square btn-ghost"
+                className="btn btn-square btn-soft btn-primary"
                 onClick={() => onWordSelect(word)}
               >
                 <svg className="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
