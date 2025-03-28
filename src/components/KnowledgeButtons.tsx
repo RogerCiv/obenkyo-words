@@ -1,3 +1,5 @@
+import { CheckCheck, X } from "lucide-react";
+
 interface KnowledgeButtonsProps {
   onKnown: () => void;
   onNotKnown: () => void;
@@ -16,14 +18,15 @@ export default function KnowledgeButtons(props: KnowledgeButtonsProps) {
         className={`bg-success hover:bg-success/80 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline cursor-pointer ${isKnownBool ? 'opacity-70 cursor-not-allowed' : ''}`}
         disabled={isKnownBool}
       >
-        Me la sé
+        <CheckCheck className="size-7 font-bold text-black" />
+ 
       </button>
       <button
         onClick={onNotKnown}
         className={`bg-error hover:bg-error/80 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline cursor-pointer ${isNotKnownBool ? 'opacity-70 cursor-not-allowed' : ''}`}
         disabled={isNotKnownBool}
       >
-        No me la sé
+       <X className="size-7 font-bold text-black" />
       </button>
     </div>
   )

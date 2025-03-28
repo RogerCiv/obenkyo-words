@@ -3,6 +3,7 @@ import useVocabularyStatus from "../hooks/useVocabularyStatus";
 import VocabularyPageContent from "../components/VocabularyPageContent";
 import { VocabularyCardType } from "../types/vocabularyTypes";
 import { fetchNokenVocabulary } from "../data/vocabularyData";
+import LoadingSkeleton from "../components/LoadingSkeleton";
 
 interface GenericVocabularyPageProps {
 	levelKey: string;
@@ -13,7 +14,6 @@ export default function GenericVocabularyPage({ levelKey, displayLevel }: Generi
 	const [vocabularyCards, setVocabularyCards] = useState<VocabularyCardType[]>([]);
 	const [currentIndex, setCurrentIndex] = useState(0);
 	const [loading, setLoading] = useState(true);
-
 
 	useEffect(() => {
 		async function loadVocabulary() {
@@ -48,7 +48,9 @@ export default function GenericVocabularyPage({ levelKey, displayLevel }: Generi
 	};
 
 	if (loading) {
-		return <div>Cargando...</div>;
+		return (
+			<LoadingSkeleton displayLevel={displayLevel} />
+		);
 	}
 	if (!vocabularyCards.length) {
 		return <div>No se encontraron tarjetas de vocabulario.</div>;
@@ -71,7 +73,7 @@ export default function GenericVocabularyPage({ levelKey, displayLevel }: Generi
 				currentIndex={currentIndex}
 				totalCards={vocabularyCards.length}
 				getTextColor={getTextColor}
-				vocabularyStatusMap={wordsStatusMap}  //Nueva prop con el estado individual de cada palabra
+				vocabularyStatusMap={wordsStatusMap}
 			/>
 		</section>
 	);
