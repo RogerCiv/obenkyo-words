@@ -2,9 +2,11 @@ import { Outlet } from 'react-router-dom'
 import Header from './Header'
 import Footer from './Footer'
 import AlertMessage from './AlertMessage'
+import { Analytics } from '@vercel/analytics/react'
 
 const Layout = () => (
   <div className='flex flex-col bg-base-200'>
+    <Analytics />
     <AlertMessage />
     <Header />
     <main className='flex-grow'>
