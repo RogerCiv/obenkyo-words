@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+
 import useVocabularyStatus from "../hooks/useVocabularyStatus";
 import VocabularyPageContent from "../components/VocabularyPageContent";
 import { VocabularyCardType } from "../types/vocabularyTypes";
-import { fetchNokenVocabulary } from "../data/vocabularyData";
+import useFetchData from "../hooks/useFetchData";
 import LoadingSkeleton from "../components/LoadingSkeleton";
 
 interface GenericVocabularyPageProps {
@@ -11,22 +11,7 @@ interface GenericVocabularyPageProps {
 }
 
 export default function GenericVocabularyPage({ levelKey, displayLevel }: GenericVocabularyPageProps) {
-	const [vocabularyCards, setVocabularyCards] = useState<VocabularyCardType[]>([]);
-	const [currentIndex, setCurrentIndex] = useState(0);
-	const [loading, setLoading] = useState(true);
-
-	useEffect(() => {
-		async function loadVocabulary() {
-			const data = await fetchNokenVocabulary(levelKey);
-			if (data) {
-				setVocabularyCards(data);
-			}
-			setLoading(false);
-		}
-		loadVocabulary();
-	}, [levelKey]);
-
-	const currentCard = vocabularyCards[currentIndex] || null;
+	const { vocabularyCards, loading, currentIndex, setCurrentIndex, currentCard } = useFetchData(levelKey);
 
 	const { knownStatus, markAsKnown, markAsNotKnown, getTextColor, wordsStatusMap } = useVocabularyStatus({
 		level: levelKey,
