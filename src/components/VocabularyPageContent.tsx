@@ -98,7 +98,7 @@ export default function VocabularyPageContent({
         <div className="divider lg:divider-horizontal divider-accent" />
 
         {/* Right side: Word List */}
-        <div className="w-full lg:w-1/2 ">
+        <div className="w-full lg:w-1/2 px-4 ">
 
           <VocabularyWordList
             level={level}

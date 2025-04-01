@@ -14,7 +14,7 @@ export default function VocabularyWordList(props: VocabularyWordListProps) {
   const { level, currentIndex, currentItems, indexOfFirstItem, vocabularyStatusMap, onWordSelect, getTextColor } = props;
   return (
     <>
-      <ul className="list bg-base-200 rounded-box shadow-md gap-4">
+      <ul className="list bg-base-200 rounded-box  gap-4">
         <li className="p-4 pb-2 text-xs opacity-60 tracking-wide">
           Palabras del Nivel {level}
         </li>

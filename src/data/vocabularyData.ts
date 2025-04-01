@@ -21,7 +21,6 @@ async function fetchNokenVocabulary(level: string): Promise<VocabularyCardType[]
     if (data.length < pageSize) break;
     offset += pageSize;
   }
-  console.log(allData);
   return allData;
 }
 
