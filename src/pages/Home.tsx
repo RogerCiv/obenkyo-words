@@ -5,7 +5,7 @@ export default function HomePage() {
     <section className="hero min-h-[94.5vh] bg-gradient-to-br from-base-200 to-base-300">
       <div className="hero-content max-w-7xl mx-auto px-4 py-16 flex-col lg:flex-row-reverse gap-8 lg:gap-12">
         <div className="w-full lg:w-1/2 shadow-2xl rounded-lg overflow-hidden transform transition-transform duration-300 hover:scale-[1.02]">
-          <img src="/hero-image.jpg" alt="Aprendizaje de Nokens" className="w-full h-full object-cover" />
+          <img src="images/hero-image.jpg" alt="Aprendizaje de Nokens" className="w-full h-full object-cover" />
         </div>
 
         <div className="w-full lg:w-1/2 text-center lg:text-left">

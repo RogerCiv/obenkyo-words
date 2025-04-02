@@ -29,7 +29,7 @@ const Header = () => {
               <li><Link to='/nokens'>Nokens</Link></li>
             </ul>
           </div>
-        <img src="/logo.jpeg" alt="Noken Vocabulary Logo" className="rounded-full" width="50" height="50" />
+        <img src="images/logo.jpeg" alt="Noken Vocabulary Logo" className="rounded-full" width="50" height="50" />
           <Link className="btn btn-ghost text-xl" to="/">Noken <span className="text-accent">Vocabulary</span></Link>
         </div>
         <div className="navbar-center hidden lg:flex">
