@@ -1,29 +1,20 @@
-import { Link } from "react-router-dom";
+import CardNokenLevels from "../components/CardNokenLevels";
 
 export default function NokensPage() {
   const niveles = [
-    { level: "noken-5", label: "Noken 5" },
-    { level: "noken-4", label: "Noken 4" },
-    { level: "noken-3", label: "Noken 3" },
-    { level: "noken-2", label: "Noken 2" },
-    { level: "noken-1", label: "Noken 1" },
+    { level: "noken-5", title: "Noken 5", image: "images/nokens/noken5.jpg", description: "Corresponde al nivel A1 del MCER y evalúa las habilidades básicas de comprensión y expresión" },
+    { level: "noken-4", title: "Noken 4", image: "images/nokens/noken4.jpg", description: "Corresponde al nivel A2 del MCER y evalúa un conocimiento elemental del idioma" },
+    { level: "noken-3", title: "Noken 3", image: "images/nokens/noken3.jpg", description: "Corresponde al nivel B1 del MCER y evalúa la capacidad de comprender y utilizar el idioma en diversas situaciones" },
+    { level: "noken-2", title: "Noken 2", image: "images/nokens/noken2.jpg", description: "Corresponde al nivel B2 del MCER y evalúa la capacidad de comprender textos complejos y participar en conversaciones detalladas" },
+    { level: "noken-1", title: "Noken 1", image: "images/nokens/noken1.jpg", description: "Corresponde al nivel C1 del MCER y evalúa la capacidad de facilitar negociaciones y presentaciones. El examen se divide en tres partes: escritura y vocabulario, comprensión auditiva y gramática, y comprensión de lectura." },
   ];
 
   return (
-    <div className="min-h-screen container flex flex-col items-center justify-center">
+    <div className="min-h-screen flex flex-col items-center justify-center">
       <h1 className="text-4xl font-bold mb-6">Selecciona tu Noken</h1>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {niveles.map((nivel) => (
-          <div key={nivel.level} className="card bg-base-100 shadow-xl">
-            <div className="card-body">
-              <h2 className="card-title">{nivel.label}</h2>
-              <div className="card-actions justify-end">
-                <Link to={`/nokens/${nivel.level}`} className="btn btn-primary">
-                  Entrar
-                </Link>
-              </div>
-            </div>
-          </div>
+          <CardNokenLevels key={nivel.title} levelCard={nivel} />
         ))}
       </div>
     </div>
