@@ -13,7 +13,7 @@ async function fetchNokenVocabulary(level: string): Promise<VocabularyCardType[]
       .range(offset, offset + pageSize - 1);
 
     if (error) {
-      console.error('Error fetching N5 vocabulary:', error);
+      console.error('Error fetching vocabulary:', error);
       return null;
     }
 

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { VocabularyCardType } from "../types/vocabularyTypes";
+// Si fetchNokenVocabulary acepta una señal, modifícalo para incluirla
 import { fetchNokenVocabulary } from "../data/vocabularyData";
 
 interface UseFetchDataResult {
@@ -7,7 +8,7 @@ interface UseFetchDataResult {
   loading: boolean;
   currentIndex: number;
   setCurrentIndex: React.Dispatch<React.SetStateAction<number>>;
-  currentCard: VocabularyCardType;
+  currentCard: VocabularyCardType | null;
 }
 
 export default function useFetchData(levelKey: string): UseFetchDataResult {
@@ -17,11 +18,17 @@ export default function useFetchData(levelKey: string): UseFetchDataResult {
 
   useEffect(() => {
     async function loadVocabulary() {
-      const data = await fetchNokenVocabulary(levelKey);
-      if (data) {
-        setVocabularyCards(data);
+      try {
+
+        const data = await fetchNokenVocabulary(levelKey);
+        if (data) {
+          setVocabularyCards(data);
+        }
+      } catch (error) {
+        console.error("Error fetching vocabulary data:", error);
+      } finally {
+        setLoading(false);
       }
-      setLoading(false);
     }
     loadVocabulary();
   }, [levelKey]);
