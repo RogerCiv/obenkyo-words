@@ -8,7 +8,7 @@ interface UseFetchDataResult {
   loading: boolean;
   currentIndex: number;
   setCurrentIndex: React.Dispatch<React.SetStateAction<number>>;
-  currentCard: VocabularyCardType | null;
+  currentCard: VocabularyCardType ;
 }
 
 export default function useFetchData(levelKey: string): UseFetchDataResult {
