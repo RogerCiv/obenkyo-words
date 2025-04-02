@@ -2,8 +2,10 @@
 import useVocabularyStatus from "../hooks/useVocabularyStatus";
 import VocabularyPageContent from "../components/VocabularyPageContent";
 import { VocabularyCardType } from "../types/vocabularyTypes";
-import useFetchData from "../hooks/useFetchData";
+
 import LoadingSkeleton from "../components/LoadingSkeleton";
+import useFetchData from "../hooks/useFetchData";
+
 
 interface GenericVocabularyPageProps {
 	levelKey: string;
