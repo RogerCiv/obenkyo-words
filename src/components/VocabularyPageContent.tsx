@@ -59,6 +59,10 @@ export default function VocabularyPageContent({
     setCurrentPage(pageNumber);
   };
 
+  // Contadores de palabras conocidas y no conocidas
+  const knownTrueCount = Object.values(vocabularyStatusMap).filter(status => status === true).length;
+  const knownFalseCount = Object.values(vocabularyStatusMap).filter(status => status === false).length;
+
   return (
     <div className="flex flex-col w-full gap-6 py-10">
       {/* Heading centered above both sections */}
@@ -89,6 +93,12 @@ export default function VocabularyPageContent({
             <div className="mt-10 bg-gray-50 border border-gray-200 rounded-lg py-2 px-4 shadow-sm text-center">
               <p className="select-none text-lg font-medium text-gray-600">
                 Tarjeta {currentIndex + 1} de <span className='font-bold'>{totalCards}</span>
+              </p>
+            </div>
+
+            <div className="mt-4 bg-gray-50 border border-gray-200 rounded-lg py-2 px-4 shadow-sm text-center">
+              <p>
+                <span className='font-semibold'>Conocidas: <span className='text-success'>{knownTrueCount}</span></span> |  <span className='font-semibold'>No Conocidas: <span className='text-error'>{knownFalseCount}</span></span>  
               </p>
             </div>
           </div>

@@ -13,6 +13,8 @@ interface UseVocabularyStatusProps {
 
 const useVocabularyStatus = ({ level, currentCard }: UseVocabularyStatusProps) => {
   const [knownStatus, setKnownStatus] = useState<boolean | null>(null);
+  // Nueva consulta para obtener el estado de cada palabra
+  const [wordsStatusMap, setWordsStatusMap] = useState<{ [expression: string]: boolean | null }>({});
   const { user } = useAuth();
   const userId = user?.id;
 
@@ -37,8 +39,8 @@ const useVocabularyStatus = ({ level, currentCard }: UseVocabularyStatusProps) =
     }
   }, [level, currentCard, userId]);
 
-  // Nueva consulta para obtener el estado de cada palabra
-  const [wordsStatusMap, setWordsStatusMap] = useState<{ [expression: string]: boolean | null }>({});
+
+
   useEffect(() => {
     if (user) {
       async function loadWordsStatus() {
@@ -98,7 +100,7 @@ const useVocabularyStatus = ({ level, currentCard }: UseVocabularyStatusProps) =
   const getTextColor = (status?: boolean | null): string => {
     if (status === true) return "bg-success/50";
     if (status === false) return "bg-error/50";
-   
+
     return "bg-info/50";
   };
 
