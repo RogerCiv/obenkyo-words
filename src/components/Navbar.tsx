@@ -69,7 +69,7 @@ const Navbar = ({
     navigate("/");
   };
   return (
-    <section className="py-4">
+    <section className="py-4  shadow-md border-b">
       <div className="container mx-auto">
         {/* Desktop Menu */}
         <nav className="hidden justify-between lg:flex">
