@@ -53,8 +53,8 @@ export default function LoginForm() {
             <Link to="/" aria-label="go home" className="mx-auto block w-fit">
               <img src="images/logo.jpeg" alt="" className='size-20 rounded-2xl' />
             </Link>
-            <h1 className="mb-1 mt-4 text-xl font-semibold">Sign In to Tailus UI</h1>
-            <p className="text-sm">Welcome back! Sign in to continue</p>
+            <h1 className="mb-1 mt-4 text-xl font-semibold">Inicia Sesión en Noken Vocabulary</h1>
+            <p className="text-sm">Bienvenido, inicia sesión para continuar</p>
           </div>
 
           <div className="mt-6 space-y-6">
@@ -79,7 +79,7 @@ export default function LoginForm() {
                 </Label>
                 <Button asChild variant="link" size="sm">
                   <Link to="#" className="link intent-info variant-ghost text-sm">
-                    Forgot your Password ?
+                    ¿Olvidaste la contraseña?
                   </Link>
                 </Button>
               </div>
@@ -102,7 +102,7 @@ export default function LoginForm() {
                   <p>Sign In ....</p>
                 </>
               ) : (
-                <p>Sign In</p>
+                <p className="cursor-pointer">Sign In</p>
               )}
             </Button>
 
@@ -119,11 +119,11 @@ export default function LoginForm() {
 
           <div className="my-6 grid grid-cols-[1fr_auto_1fr] items-center gap-3">
             <hr className="border-dashed" />
-            <span className="text-muted-foreground text-xs">Or continue With</span>
+            <span className="text-muted-foreground text-xs">O Continua con</span>
             <hr className="border-dashed" />
           </div>
 
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-2 gap-3 pointer-events-none opacity-50">
             <Button type="button" variant="outline">
               <svg xmlns="http://www.w3.org/2000/svg" width="0.98em" height="1em" viewBox="0 0 256 262">
                 <path fill="#4285f4" d="M255.878 133.451c0-10.734-.871-18.567-2.756-26.69H130.55v48.448h71.947c-1.45 12.04-9.283 30.172-26.69 42.356l-.244 1.622l38.755 30.023l2.685.268c24.659-22.774 38.875-56.282 38.875-96.027"></path>
@@ -145,13 +145,14 @@ export default function LoginForm() {
           </div>
         </div>
 
-        <div className="p-3">
+        <div className="p-3 flex flex-col items-center justify-center">
           <p className="text-accent-foreground text-center text-sm">
-            Don't have an account ?
-            <Button asChild variant="link" className="px-2">
-              <Link to="#">Create account</Link>
-            </Button>
+            ¿No tienes cuenta? <br />
+            <span className="text-muted-foreground">Crea una cuenta para acceder a todas las funciones</span>
           </p>
+          <Button asChild variant="link" className="px-2 ">
+            <Link to="#">Crear cuenta</Link>
+          </Button>
         </div>
       </form>
     </section>
