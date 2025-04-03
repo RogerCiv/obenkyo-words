@@ -85,7 +85,7 @@ function NokenLevelChart({ level }: NokenLevelChartProps) {
       <CardHeader className="items-center pb-0">
         <CardTitle>{levelNames[level] || level.toUpperCase()}</CardTitle>
         <CardDescription>Estadísticas de vocabulario</CardDescription>
-        <div className="flex items-center justify-center gap-4 mt-4 -mb-10">
+        <div className="flex flex-wrap items-center justify-center gap-4 mt-4 -mb-5">
           <span className="flex items-center gap-1 text-sm text-muted-foreground">
             <span className="w-3 h-3 rounded-full bg-chart-2" /> Aprendidas </span>
           <span className="flex items-center gap-1 text-sm text-muted-foreground">
