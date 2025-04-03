@@ -44,6 +44,7 @@ const Header = () => {
         <div className="navbar-end">
           {user ? (
             <div className="flex gap-4">
+              <Link to="/profile" className="btn btn-ghost">Perfil</Link>
               <a className="btn" onClick={handleLogout}>Logout</a>
             </div>
           ) : (

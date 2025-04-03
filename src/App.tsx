@@ -6,13 +6,13 @@ import Noken3Page from './pages/Noken3'
 import ProtectedRoutes from './utils/protectedRoutes'
 import Login from './pages/Login'
 import Register from './pages/Register'
-
 import Layout from './components/Layout'  
 import NotFound from './pages/NotFound'
 import NokensPage from './pages/NokensPage'
 import { AuthProvider } from './context/AuthProvider'
 import Noken2Page from './pages/Noken2'
 import Noken1Page from './pages/Noken1'
+import Profile from './pages/Profile'
 
 function App() {
   return (
@@ -23,6 +23,11 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            
+            <Route element={<ProtectedRoutes />}>
+              <Route path="/profile" element={<Profile />} />
+            </Route>
+            
             <Route path="/nokens">
               <Route index element={<NokensPage />} />
               <Route element={<ProtectedRoutes />}>
