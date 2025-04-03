@@ -11,7 +11,7 @@ const Layout = () => (
     <Analytics />
     <AlertMessage />
     <Navbar />
-    <main className='flex-grow'>
+    <main className='flex-grow min-h-screen'>
       <Outlet />
     </main>
     <Footer />
