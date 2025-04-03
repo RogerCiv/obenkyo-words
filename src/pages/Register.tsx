@@ -5,7 +5,7 @@ export default function Register() {
 
 
   return (
-    <div className="min-h-screen py-12">
+    <div className="min-h-screen py-2">
       <RegisterForm />
     </div>
   )
