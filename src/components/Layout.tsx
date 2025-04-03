@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router-dom'
-
+import { Toaster } from "@/components/ui/sonner"
 import Footer from './Footer'
 import AlertMessage from './AlertMessage'
 import { Analytics } from '@vercel/analytics/react'
@@ -14,6 +14,7 @@ const Layout = () => (
     <main className='flex-grow min-h-screen'>
       <Outlet />
     </main>
+    <Toaster />
     <Footer />
   </div>
 )

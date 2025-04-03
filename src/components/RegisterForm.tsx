@@ -7,6 +7,7 @@ import { AlertCircle, Loader2 } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Alert, AlertDescription, AlertTitle } from './ui/alert'
+import { toast } from 'sonner'
 
 
 
@@ -16,7 +17,6 @@ export default function RegisterForm() {
   const [confirmPassword, setConfirmPassword] = useState("")
   const [error, setError] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
-  const [success, setSuccess] = useState(false)
   const { register } = useAuth()
   const navigate = useNavigate()
 
@@ -34,10 +34,11 @@ export default function RegisterForm() {
 
     try {
       await register(email, password)
-      setSuccess(true)
+
+      toast.success("Usuario registrado con éxito")
       setTimeout(() => {
         navigate("/login")
-      }, 2000)
+      }, 500)
     } catch (err: unknown) {
       const errorMessage = err instanceof Error ? err.message : "Error al registrar usuario"
       setError(errorMessage)
@@ -90,11 +91,6 @@ export default function RegisterForm() {
                 <Label htmlFor="pwd" className="text-title text-sm">
                   Password
                 </Label>
-                <Button asChild variant="link" size="sm">
-                  <Link to="#" className="link intent-info variant-ghost text-sm">
-                    ¿Olvidaste la contraseña?
-                  </Link>
-                </Button>
               </div>
               <Input
                 type="password"
@@ -112,11 +108,6 @@ export default function RegisterForm() {
                 <Label htmlFor="pwd" className="text-title text-sm">
                   Password
                 </Label>
-                <Button asChild variant="link" size="sm">
-                  <Link to="#" className="link intent-info variant-ghost text-sm">
-                    ¿Olvidaste la contraseña?
-                  </Link>
-                </Button>
               </div>
               <Input
                 type="password"
