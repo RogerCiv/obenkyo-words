@@ -1,12 +1,10 @@
-import { ChartNokens } from "@/components/ChartNokens";
+
 import { NokenCharts } from "@/components/NokenCharts";
 
 export default function Profile() {
   return (
-    <section>
+    <section className="container mx-auto py-10">
       <h1>PROFILE</h1>
-
-      <ChartNokens />
       <NokenCharts />
     </section>
   )
