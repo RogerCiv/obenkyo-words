@@ -151,7 +151,7 @@ export default function LoginForm() {
             <span className="text-muted-foreground">Crea una cuenta para acceder a todas las funciones</span>
           </p>
           <Button asChild variant="link" className="px-2 ">
-            <Link to="#">Crear cuenta</Link>
+            <Link to="/register">Crear cuenta</Link>
           </Button>
         </div>
       </form>
