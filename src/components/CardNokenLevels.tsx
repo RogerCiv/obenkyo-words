@@ -17,7 +17,7 @@ export default function CardNokenLevels({ levelCard }: CardNokenLevelsProps) {
   };
 
   return (
-    <div className="card bg-base-100 w-96 shadow-sm">
+    <div className="card bg-base-100 max-w-xl shadow-sm">
       <figure>
         <img src={`/${levelCard.image}`} alt="Imagen de Noken" />
       </figure>
