@@ -1,6 +1,12 @@
+import { ChartNokens } from "@/components/ChartNokens";
+
 
 export default function Profile() {
   return (
-    <div>Profile</div>
+    <section>
+      <h1>PROFILE</h1>
+
+      <ChartNokens />
+    </section>
   )
 }
