@@ -1,33 +1,48 @@
-import { useNavigate } from "react-router-dom";
+"use client"
+
+import { useNavigate } from "react-router-dom"
+import { Button } from "@/components/ui/button"
 
 interface CardNokenLevelsProps {
   levelCard: {
-    level: string;
-    title: string;
-    image: string;
-    description: string;
+    level: string
+    title: string
+    image: string
+    description: string
   }
 }
 
 export default function CardNokenLevels({ levelCard }: CardNokenLevelsProps) {
-  const navigate = useNavigate();
-  
+  const navigate = useNavigate()
+
   const handleEntrar = () => {
-    navigate(`/nokens/${levelCard.level}`);
-  };
+    navigate(`/nokens/${levelCard.level}`)
+  }
 
   return (
-    <div className="card bg-base-100 max-w-xl shadow-sm">
-      <figure>
-        <img src={`/${levelCard.image}`} alt="Imagen de Noken" />
-      </figure>
-      <div className="card-body">
-        <h2 className="card-title text-accent font-bold">{levelCard.title}</h2>
-        <p className="text-pretty font-medium">{levelCard.description}</p>
-        <div className="card-actions justify-end">
-          <button className="btn btn-primary hover:opacity-90" onClick={handleEntrar}>Entrar</button>
+    <div className="rounded-lg bg-white shadow-sm overflow-hidden flex flex-col max-w-xl">
+      {/* Imagen que rellena completamente la parte superior */}
+      <div className="w-full h-64 overflow-hidden">
+        <img
+          src={`/${levelCard.image}`}
+          alt={`Imagen de Noken ${levelCard.level}`}
+          className="w-full h-full "
+        />
+      </div>
+
+      {/* Contenido con padding */}
+      <div className="p-5 flex flex-col flex-grow">
+        <h3 className="text-xl font-bold text-primary mb-2">{levelCard.title}</h3>
+
+        <p className="text-foreground text-sm mb-4 flex-grow">{levelCard.description}</p>
+
+        <div className="flex justify-end mt-auto">
+          <Button onClick={handleEntrar} className="bg-sky-600 hover:bg-sky-700 text-white cursor-pointer" size="sm">
+            Entrar
+          </Button>
         </div>
       </div>
     </div>
   )
 }
+
