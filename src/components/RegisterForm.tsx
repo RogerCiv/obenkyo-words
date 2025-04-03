@@ -20,6 +20,8 @@ export default function RegisterForm() {
   const { register } = useAuth()
   const navigate = useNavigate()
 
+
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     setLoading(true)

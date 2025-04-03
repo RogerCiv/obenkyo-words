@@ -13,6 +13,7 @@ import { AuthProvider } from './context/AuthProvider'
 import Noken2Page from './pages/Noken2'
 import Noken1Page from './pages/Noken1'
 import Profile from './pages/Profile'
+import PublicRoutes from './utils/PublicRoutes'
 
 function App() {
   return (
@@ -21,8 +22,22 @@ function App() {
         <Routes>
           <Route element={<Layout />}>
             <Route path="/" element={<HomePage />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
+            <Route 
+              path="/login" 
+              element={
+                <PublicRoutes>
+                  <Login />
+                </PublicRoutes>
+              } 
+            />
+            <Route 
+              path="/register" 
+              element={
+                <PublicRoutes>
+                  <Register />
+                </PublicRoutes>
+              } 
+            />
             
             <Route element={<ProtectedRoutes />}>
               <Route path="/profile" element={<Profile />} />
