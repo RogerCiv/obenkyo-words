@@ -1,52 +1,67 @@
-import { VocabularyCardType } from "../types/vocabularyTypes";
+"use client"
+
+import { Play } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { ScrollArea } from "@/components/ui/scroll-area"
+import type { VocabularyCardType } from "../types/vocabularyTypes"
 
 interface VocabularyWordListProps {
-  level: string;
-  currentIndex: number;
-  currentItems: VocabularyCardType[];
-  indexOfFirstItem: number;
-  vocabularyStatusMap: { [expression: string]: boolean | null };
-  onWordSelect: (word: VocabularyCardType) => void;
-  getTextColor: (status: boolean | null) => string;
+  level: string
+  currentIndex: number
+  currentItems: VocabularyCardType[]
+  indexOfFirstItem: number
+  vocabularyStatusMap: { [expression: string]: boolean | null }
+  onWordSelect: (word: VocabularyCardType) => void
+  getTextColor: (status: boolean | null) => string
 }
 
 export default function VocabularyWordList(props: VocabularyWordListProps) {
-  const { level, currentIndex, currentItems, indexOfFirstItem, vocabularyStatusMap, onWordSelect, getTextColor } = props;
+  const { level, currentIndex, currentItems, indexOfFirstItem, vocabularyStatusMap, onWordSelect, getTextColor } = props
+
   return (
-    <>
-      <ul className="list bg-base-200 rounded-box  gap-4">
-        <li className="p-4 pb-2 text-xs opacity-60 tracking-wide">
+    <div className="rounded-lg border bg-muted/30">
+      <ScrollArea className="h-[600px]">
+        <div className="p-4 pb-2 text-xs text-muted-foreground font-medium uppercase tracking-wide">
           Palabras del Nivel {level}
-        </li>
-        {currentItems.map((word, index) => {
-          const fullIndex = indexOfFirstItem + index;
-          const wordStatus = vocabularyStatusMap[word.expression] ?? word.knownStatus!;
-          return (
-            <li
-              key={index}
-              className={`list-row flex items-center ${getTextColor(wordStatus)} ${fullIndex === currentIndex ? "border-3 border-accent" : ""
-                }`}
-            >
-              <div className="grow px-4 flex space-x-2  items-center">
-                <p className="font-bold text-secondary text-2xl">
-                  {word.expression}
-                </p>
-                <p className="font-semibold text-lg text-secondary/70">({word.reading})</p>
-              </div>
-              <button
-                className="btn btn-square btn-soft btn-primary"
-                onClick={() => onWordSelect(word)}
+        </div>
+
+        <ul className="space-y-1">
+          {currentItems.map((word, index) => {
+            const fullIndex = indexOfFirstItem + index
+            const wordStatus = vocabularyStatusMap[word.expression] ?? word.knownStatus!
+            const statusColor = getTextColor(wordStatus)
+
+            // Convertir colores de daisyUI a clases de Tailwind para shadcn
+            let borderClass = ""
+            if (fullIndex === currentIndex) {
+              borderClass = "border-2 border-blue-500"
+            }
+
+            return (
+              <li
+                key={index}
+                className={`flex items-center p-2 mx-2 rounded-md ${statusColor} ${borderClass} ${fullIndex === currentIndex ? "opacity-70" : "hover:opacity-70"
+                  }`}
               >
-                <svg className="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                  <g strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor">
-                    <path d="M6 3L20 12 6 21 6 3z"></path>
-                  </g>
-                </svg>
-              </button>
-            </li>
-          );
-        })}
-      </ul>
-    </>
+                <div className={`grow px-2 flex space-x-2 items-center `}>
+                  <p className={`font-bold text-2xl `}>{word.expression}</p>
+                  <p className="font-semibold text-lg text-muted-foreground">({word.reading})</p>
+                </div>
+                <Button
+                  size="icon"
+                  variant="outline"
+                  onClick={() => onWordSelect(word)}
+                  className="h-9 w-9 rounded-full cursor-pointer "
+                  aria-label="Play"
+                >
+                  <Play className="h-4 w-4" />
+                </Button>
+              </li>
+            )
+          })}
+        </ul>
+      </ScrollArea>
+    </div>
   )
 }
+

@@ -1,26 +1,31 @@
-import { useState, useEffect } from 'react';
-import VocabularyCardDisplay from "./VocabularyCardDisplay";
-import KnowledgeButtons from "./KnowledgeButtons";
-import Pagination from "./Pagination";
-import type { VocabularyCardType } from "../types/vocabularyTypes";
-import VocabularyWordList from './VocabularyWordList';
+"use client"
+
+import { useState, useEffect } from "react"
+import { Separator } from "@/components/ui/separator"
+import { Card, CardContent } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import VocabularyCardDisplay from "./VocabularyCardDisplay"
+import KnowledgeButtons from "./KnowledgeButtons"
+import Pagination from "./Pagination"
+import VocabularyWordList from "./VocabularyWordList"
+import type { VocabularyCardType } from "../types/vocabularyTypes"
 
 interface Props {
-  cardData: VocabularyCardType;
-  knownStatus: boolean | null;
-  level: string;
-  vocabularyList: VocabularyCardType[];
-  onPrevious: () => void;
-  onNext: () => void;
-  isPreviousDisabled: boolean;
-  isNextDisabled: boolean;
-  onKnown: () => void;
-  onNotKnown: () => void;
-  currentIndex: number;
-  totalCards: number;
-  onWordSelect: (word: VocabularyCardType) => void;
-  vocabularyStatusMap: { [expression: string]: boolean | null };
-  getTextColor: (status: boolean | null) => string;
+  cardData: VocabularyCardType
+  knownStatus: boolean | null
+  level: string
+  vocabularyList: VocabularyCardType[]
+  onPrevious: () => void
+  onNext: () => void
+  isPreviousDisabled: boolean
+  isNextDisabled: boolean
+  onKnown: () => void
+  onNotKnown: () => void
+  currentIndex: number
+  totalCards: number
+  onWordSelect: (word: VocabularyCardType) => void
+  vocabularyStatusMap: { [expression: string]: boolean | null }
+  getTextColor: (status: boolean | null) => string
 }
 
 export default function VocabularyPageContent({
@@ -40,35 +45,34 @@ export default function VocabularyPageContent({
   getTextColor,
   vocabularyStatusMap,
 }: Props) {
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 10;
+  const [currentPage, setCurrentPage] = useState(1)
+  const itemsPerPage = 10
 
   // Pagination
-  const totalPages = Math.ceil(vocabularyList.length / itemsPerPage);
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = vocabularyList.slice(indexOfFirstItem, indexOfLastItem);
+  const totalPages = Math.ceil(vocabularyList.length / itemsPerPage)
+  const indexOfLastItem = currentPage * itemsPerPage
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage
+  const currentItems = vocabularyList.slice(indexOfFirstItem, indexOfLastItem)
 
   // Actualiza currentPage cuando currentIndex cambia
   useEffect(() => {
-    setCurrentPage(Math.floor(currentIndex / itemsPerPage) + 1);
-  }, [currentIndex]);
+    setCurrentPage(Math.floor(currentIndex / itemsPerPage) + 1)
+  }, [currentIndex])
 
-  // Nueva función para manejar el cambio de página  
+  // Nueva función para manejar el cambio de página
   const handlePageChange = (pageNumber: number) => {
-    setCurrentPage(pageNumber);
-  };
+    setCurrentPage(pageNumber)
+  }
 
   // Contadores de palabras conocidas y no conocidas
-  const knownTrueCount = Object.values(vocabularyStatusMap).filter(status => status === true).length;
-  const knownFalseCount = Object.values(vocabularyStatusMap).filter(status => status === false).length;
+  const knownTrueCount = Object.values(vocabularyStatusMap).filter((status) => status === true).length
+  const knownFalseCount = Object.values(vocabularyStatusMap).filter((status) => status === false).length
 
   return (
     <div className="flex flex-col w-full gap-6 py-10">
       {/* Heading centered above both sections */}
       <h1 className="text-3xl md:text-4xl lg:text-5xl text-center mb-4">
-        Vocabulario <span className="text-accent font-semibold">Noken {level} </span>
-
+        Vocabulario <span className="text-primary font-semibold">Noken {level}</span>
       </h1>
 
       <div className="flex w-full flex-col lg:flex-row gap-4">
@@ -78,38 +82,49 @@ export default function VocabularyPageContent({
             <VocabularyCardDisplay
               cardData={cardData}
               knownStatus={knownStatus}
+              level={level}
               onPrevious={onPrevious}
               onNext={onNext}
               isPreviousDisabled={isPreviousDisabled}
               isNextDisabled={isNextDisabled}
             />
             <div className="flex flex-col items-center justify-center gap-4">
-              <KnowledgeButtons
-                onKnown={onKnown}
-                onNotKnown={onNotKnown}
-                isKnown={knownStatus ?? null}
-              />
-            </div>
-            <div className="mt-10 bg-gray-50 border border-gray-200 rounded-lg py-2 px-4 shadow-sm text-center">
-              <p className="select-none text-lg font-medium text-gray-600">
-                Tarjeta {currentIndex + 1} de <span className='font-bold'>{totalCards}</span>
-              </p>
+              <KnowledgeButtons onKnown={onKnown} onNotKnown={onNotKnown} isKnown={knownStatus ?? null} />
             </div>
 
-            <div className="mt-4 bg-gray-50 border border-gray-200 rounded-lg py-2 px-4 shadow-sm text-center">
-              <p>
-                <span className='font-semibold'>Conocidas: <span className='text-success'>{knownTrueCount}</span></span> |  <span className='font-semibold'>No Conocidas: <span className='text-error'>{knownFalseCount}</span></span>  
-              </p>
-            </div>
+            <Card className="mt-10 w-full max-w-xs">
+              <CardContent className="text-center">
+                <p className="select-none text-lg font-medium text-muted-foreground">
+                  Tarjeta {currentIndex + 1} de <span className="font-bold text-foreground">{totalCards}</span>
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="mt-4 w-full max-w-xs">
+              <CardContent className="text-center flex justify-center gap-4">
+                <div>
+                  <span className="font-semibold">Conocidas: </span>
+                  <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200 ml-1">
+                    {knownTrueCount}
+                  </Badge>
+                </div>
+                <div>
+                  <span className="font-semibold">No Conocidas: </span>
+                  <Badge variant="outline" className="bg-red-50 text-red-700 border-red-200 ml-1">
+                    {knownFalseCount}
+                  </Badge>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
 
         {/* Divider */}
-        <div className="divider lg:divider-horizontal divider-accent" />
+        <Separator orientation="vertical" className="hidden lg:block h-auto   bg-red-500" />
+        <Separator className="lg:hidden my-4" />
 
         {/* Right side: Word List */}
-        <div className="w-full lg:w-1/2 px-4 ">
-
+        <div className="w-full lg:w-1/2 px-4">
           <VocabularyWordList
             level={level}
             currentIndex={currentIndex}
@@ -123,5 +138,6 @@ export default function VocabularyPageContent({
         </div>
       </div>
     </div>
-  );
+  )
 }
+

@@ -1,194 +1,101 @@
 "use client"
 
-import type React from "react"
-
-import { useRef, useEffect, useState } from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
+import { Button } from "@/components/ui/button"
 
 interface PaginationProps {
   currentPage: number
   totalPages: number
-  onPageChange: (pageNumber: number) => void
+  onPageChange: (page: number) => void
 }
 
 export default function Pagination({ currentPage, totalPages, onPageChange }: PaginationProps) {
-  const [jumpToPage, setJumpToPage] = useState("")
-  const [showJumpInput, setShowJumpInput] = useState(false)
-  const modalRef = useRef<HTMLDivElement>(null)
-  const inputRef = useRef<HTMLInputElement>(null)
+  // Crear un array de números de página para mostrar
+  const getPageNumbers = () => {
+    const pageNumbers = []
+    const maxPagesToShow = 5
 
-  const handlePrevious = () => {
-    if (currentPage > 1) {
-      onPageChange(currentPage - 1)
-    }
-  }
-
-  const handleNext = () => {
-    if (currentPage < totalPages) {
-      onPageChange(currentPage + 1)
-    }
-  }
-
-  const openModal = () => {
-    setShowJumpInput(true)
-    // Focus the input after a short delay to ensure the modal is visible
-    setTimeout(() => {
-      if (inputRef.current) {
-        inputRef.current.focus()
+    if (totalPages <= maxPagesToShow) {
+      // Si hay menos páginas que el máximo a mostrar, mostrar todas
+      for (let i = 1; i <= totalPages; i++) {
+        pageNumbers.push(i)
       }
-    }, 50)
-  }
+    } else {
+      // Siempre mostrar la primera página
+      pageNumbers.push(1)
 
-  const closeModal = () => {
-    setShowJumpInput(false)
-    setJumpToPage("")
-  }
+      // Calcular el rango de páginas a mostrar alrededor de la página actual
+      let startPage = Math.max(2, currentPage - 1)
+      let endPage = Math.min(totalPages - 1, currentPage + 1)
 
-  const handleJumpToPage = () => {
-    const pageNumber = Number.parseInt(jumpToPage)
-    if (!isNaN(pageNumber) && pageNumber >= 1 && pageNumber <= totalPages) {
-      onPageChange(pageNumber)
-      closeModal()
-    }
-  }
-
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter") {
-      handleJumpToPage()
-    } else if (e.key === "Escape") {
-      closeModal()
-    }
-  }
-
-  // Close modal when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
-        closeModal()
+      // Ajustar si estamos cerca del inicio o final
+      if (currentPage <= 2) {
+        endPage = 3
+      } else if (currentPage >= totalPages - 1) {
+        startPage = totalPages - 2
       }
-    }
 
-    if (showJumpInput) {
-      document.addEventListener("mousedown", handleClickOutside)
-    }
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside)
-    }
-  }, [showJumpInput])
-
-  const renderPaginationButtons = () => {
-    const buttons = []
-    const visiblePages = 2
-    const halfVisiblePages = Math.floor(visiblePages / 2)
-
-    let startPage = Math.max(1, currentPage - halfVisiblePages)
-    const endPage = Math.min(totalPages, startPage + visiblePages - 1)
-
-    if (endPage - startPage + 1 < visiblePages) {
-      startPage = Math.max(1, endPage - visiblePages + 1)
-    }
-
-    // Botón de primera página
-    if (startPage > 1) {
-      buttons.push(
-        <button key="first" className="join-item btn btn-sm md:btn-md" onClick={() => onPageChange(1)}>
-          1
-        </button>,
-      )
+      // Añadir ellipsis si es necesario
       if (startPage > 2) {
-        buttons.push(
-          <button key="first-ellipsis" className="join-item btn btn-sm md:btn-md" onClick={openModal}>
-            ...
-          </button>,
-        )
+        pageNumbers.push("...")
       }
-    }
 
-    // Botones centrales
-    for (let page = startPage; page <= endPage; page++) {
-      buttons.push(
-        <button
-          key={page}
-          className={`join-item btn btn-sm md:btn-md ${currentPage === page ? "btn-active bg-neutral/60 font-bold text-white" : ""}`}
-          onClick={() => onPageChange(page)}
-        >
-          {page}
-        </button>,
-      )
-    }
+      // Añadir páginas del rango
+      for (let i = startPage; i <= endPage; i++) {
+        pageNumbers.push(i)
+      }
 
-    // Botones de la última página
-    if (endPage < totalPages) {
+      // Añadir ellipsis si es necesario
       if (endPage < totalPages - 1) {
-        buttons.push(
-          <button key="last-ellipsis" className="join-item btn btn-sm md:btn-md" onClick={openModal}>
-            ...
-          </button>,
-        )
+        pageNumbers.push("...")
       }
-      buttons.push(
-        <button key="last" className="join-item btn btn-sm md:btn-md" onClick={() => onPageChange(totalPages)}>
-          {totalPages}
-        </button>,
-      )
+
+      // Siempre mostrar la última página
+      pageNumbers.push(totalPages)
     }
 
-    return buttons
+    return pageNumbers
   }
 
   return (
-    <div className="flex justify-center mt-4 relative">
-      <div className="join">
-        {/* Botón Anterior */}
-        <button
-          className="join-item btn btn-sm md:btn-md bg-base-300"
-          onClick={handlePrevious}
-          disabled={currentPage === 1}
-          aria-label="Página anterior"
-        >
-          <ChevronLeft className="h-4 w-4 md:h-5 md:w-5" />
-        </button>
+    <div className="flex justify-center items-center mt-6 gap-1">
+      <Button
+        variant="outline"
+        size="icon"
+        onClick={() => onPageChange(currentPage - 1)}
+        disabled={currentPage === 1}
+        className="h-8 w-8"
+      >
+        <ChevronLeft className="h-4 w-4" />
+      </Button>
 
-        {/* Números de página */}
-        {renderPaginationButtons()}
-
-        {/* Botón Siguiente */}
-        <button
-          className="join-item btn btn-sm md:btn-md"
-          onClick={handleNext}
-          disabled={currentPage === totalPages}
-          aria-label="Página siguiente"
-        >
-          <ChevronRight className="h-4 w-4 md:h-5 md:w-5" />
-        </button>
-      </div>
-
-      {/* Modal pequeño para saltar a una página específica */}
-      {showJumpInput && (
-        <div
-          ref={modalRef}
-          className="absolute bottom-[-100px] bg-base-200 shadow-lg rounded-box p-4 z-10 flex flex-col items-center"
-        >
-          <div className="text-sm mb-2">Ir a la página:</div>
-          <div className="flex gap-2">
-            <input
-              ref={inputRef}
-              type="number"
-              min="1"
-              max={totalPages}
-              className="input input-bordered input-sm w-20"
-              value={jumpToPage}
-              onChange={(e) => setJumpToPage(e.target.value)}
-              onKeyDown={handleKeyDown}
-            />
-            <button className="btn btn-sm btn-primary" onClick={handleJumpToPage}>
-              Ir
-            </button>
-          </div>
-          <div className="text-xs mt-1 opacity-70">(1-{totalPages})</div>
-        </div>
+      {getPageNumbers().map((page, index) =>
+        typeof page === "number" ? (
+          <Button
+            key={index}
+            variant={currentPage === page ? "default" : "outline"}
+            size="sm"
+            onClick={() => onPageChange(page)}
+            className="h-8 w-8 p-0"
+          >
+            {page}
+          </Button>
+        ) : (
+          <span key={index} className="px-1">
+            ...
+          </span>
+        ),
       )}
+
+      <Button
+        variant="outline"
+        size="icon"
+        onClick={() => onPageChange(currentPage + 1)}
+        disabled={currentPage === totalPages}
+        className="h-8 w-8"
+      >
+        <ChevronRight className="h-4 w-4" />
+      </Button>
     </div>
   )
 }
