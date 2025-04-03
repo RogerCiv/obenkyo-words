@@ -24,11 +24,11 @@ const chartConfig = {
   },
   known: {
     label: "Aprendidas",
-    color: "hsl(var(--chart-1))",
+    color: "hsl(var(--chart-2))",
   },
   notKnown: {
     label: "No Aprendidas",
-    color: "hsl(var(--chart-2))",
+    color: "hsl(var(--chart-1))",
   },
   pending: {
     label: "Sin Estado",
@@ -65,8 +65,8 @@ function NokenLevelChart({ level }: NokenLevelChartProps) {
 
   // Datos para el gráfico, usando el total conocido, no conocido y pendientes
   const chartData = [
-    { category: "known", value: knownCount, fill: "var(--color-chart-1)" },
-    { category: "notKnown", value: notKnownCount, fill: "var(--color-chart-2)" },
+    { category: "known", value: knownCount, fill: "var(--color-chart-2)" },
+    { category: "notKnown", value: notKnownCount, fill: "var(--color-chart-1)" },
     { category: "pending", value: pendingCount, fill: "var(--color-chart-3)" },
   ]
 
@@ -85,6 +85,16 @@ function NokenLevelChart({ level }: NokenLevelChartProps) {
       <CardHeader className="items-center pb-0">
         <CardTitle>{levelNames[level] || level.toUpperCase()}</CardTitle>
         <CardDescription>Estadísticas de vocabulario</CardDescription>
+        <div className="flex items-center justify-center gap-4 mt-4 -mb-10">
+          <span className="flex items-center gap-1 text-sm text-muted-foreground">
+            <span className="w-3 h-3 rounded-full bg-chart-2" /> Aprendidas </span>
+          <span className="flex items-center gap-1 text-sm text-muted-foreground">
+            <span className="w-3 h-3 rounded-full bg-chart-1" /> No Aprendidas </span>
+          <span className="flex items-center gap-1 text-sm text-muted-foreground">
+            <span className="w-3 h-3 rounded-full bg-chart-3" /> Sin Estado </span>
+
+          
+        </div>
       </CardHeader>
       <CardContent className="flex-1 pb-0">
         <ChartContainer className="mx-auto aspect-square max-h-[250px]" config={chartConfig}>
