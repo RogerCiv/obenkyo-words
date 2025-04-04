@@ -1,4 +1,3 @@
-import { TrendingDown, TrendingUp } from "lucide-react"
 import { PieChart, Pie, Label } from "recharts"
 import useVocabularyStatus from "../hooks/useVocabularyStatus"
 import useFetchData from "../hooks/useFetchData"
@@ -71,15 +70,6 @@ function NokenLevelChart({ level }: NokenLevelChartProps) {
   ]
 
 
-
-  // Simulación de tendencia real: en una aplicación real se compararían datos históricos del mes anterior.
-  // Aquí se asume que el mes anterior se tuvo un 90% del progreso actual (valor dummy).
-  const previousMonthKnown = knownCount * 0.9
-  const trendingPercentage = previousMonthKnown > 0
-    ? (((knownCount - previousMonthKnown) / previousMonthKnown) * 100).toFixed(1)
-    : "0"
-  const isTrendingUp = Number.parseFloat(trendingPercentage) >= 0
-
   return (
     <Card className="flex flex-col">
       <CardHeader className="items-center pb-0">
@@ -123,17 +113,6 @@ function NokenLevelChart({ level }: NokenLevelChartProps) {
         </ChartContainer>
       </CardContent>
       <CardFooter className="flex-col gap-2 text-sm">
-        <div className="flex items-center gap-2 font-medium leading-none">
-          {isTrendingUp ? (
-            <>
-              Progreso subiendo {trendingPercentage}% este mes <TrendingUp className="h-4 w-4 text-success" />
-            </>
-          ) : (
-            <>
-              Progreso bajando {trendingPercentage.substring(1)}% este mes <TrendingDown className="h-4 w-4 text-error" />
-            </>
-          )}
-        </div>
         <div className="leading-none text-muted-foreground">
           {Math.round((knownCount / totalWords) * 100)}% de palabras aprendidas ({knownCount} de {totalWords})
         </div>
