@@ -6,9 +6,10 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import VocabularyCardDisplay from "./VocabularyCardDisplay"
 import KnowledgeButtons from "./KnowledgeButtons"
-import Pagination from "./Pagination"
 import VocabularyWordList from "./VocabularyWordList"
 import type { VocabularyCardType } from "../types/vocabularyTypes"
+import { PaginationCard } from "./PaginationCard"
+
 
 interface Props {
   cardData: VocabularyCardType
@@ -134,7 +135,7 @@ export default function VocabularyPageContent({
             onWordSelect={onWordSelect}
             vocabularyStatusMap={vocabularyStatusMap}
           />
-          <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
+          <PaginationCard  currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
         </div>
       </div>
     </div>
