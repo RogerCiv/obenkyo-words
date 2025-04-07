@@ -44,7 +44,7 @@ export default function GenericVocabularyPage({ levelKey, displayLevel }: Generi
 	}
 
 	return (
-		<section className="min-h-screen container mx-auto flex flex-col justify-center">
+		<section className="container mx-auto py-32">
 			<VocabularyPageContent
 				vocabularyList={vocabularyCards}
 				onWordSelect={handleWordSelect}
