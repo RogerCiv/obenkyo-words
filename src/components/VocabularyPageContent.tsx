@@ -1,5 +1,3 @@
-"use client"
-
 import { useState, useEffect } from "react"
 import { Separator } from "@/components/ui/separator"
 import { Card, CardContent } from "@/components/ui/card"
@@ -70,7 +68,7 @@ export default function VocabularyPageContent({
   const knownFalseCount = Object.values(vocabularyStatusMap).filter((status) => status === false).length
 
   return (
-    <div className="flex flex-col w-full gap-6 py-10">
+    <div className="flex flex-col w-full gap-6 py-16">
       {/* Heading centered above both sections */}
       <h1 className="text-3xl md:text-4xl lg:text-5xl text-center mb-4">
         Vocabulario <span className="text-primary font-semibold">Noken {level}</span>
