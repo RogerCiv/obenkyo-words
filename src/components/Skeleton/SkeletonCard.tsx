@@ -1,6 +1,6 @@
 import { Skeleton } from "@/components/ui/skeleton";
 
-export default function SkeletonCard() {
+export  function SkeletonCard() {
   return (
     <div className="flex flex-col items-center justify-center w-full px-4 py-8 gap-6 md:gap-10">
       <div className="w-full max-w-3xl mx-auto flex flex-col items-center justify-center">

@@ -15,7 +15,7 @@ interface VocabularyWordListProps {
   getTextColor: (status: boolean | null) => string
 }
 
-export default function VocabularyWordList(props: VocabularyWordListProps) {
+export  function VocabularyWordList(props: VocabularyWordListProps) {
   const { level, currentIndex, currentItems, indexOfFirstItem, vocabularyStatusMap, onWordSelect, getTextColor } = props
 
   return (

@@ -3,9 +3,10 @@ import useVocabularyStatus from "../hooks/useVocabularyStatus";
 
 import { VocabularyCardType } from "../types/vocabularyTypes";
 
-import LoadingSkeleton from "../components/LoadingSkeleton";
 import useFetchData from "../hooks/useFetchData";
-import VocabularyPageContent from "@/components/Vocabulary/VocabularyPageContent";
+
+import { LoadingSkeleton, VocabularyPageContent } from "@/components";
+
 
 
 

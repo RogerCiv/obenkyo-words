@@ -9,7 +9,7 @@ const nokenLinks = [
 ]
 
 
-export default function VocabularyNavItems() {
+export  function VocabularyNavItems() {
   return (
     <details>
       <summary>Vocabulario</summary>

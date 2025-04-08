@@ -7,8 +7,9 @@ import KnowledgeButtons from "../KnowledgeButtons"
 
 import type { VocabularyCardType } from "../../types/vocabularyTypes"
 import { PaginationCard } from "../PaginationCard"
-import VocabularyCardDisplay from "./VocabularyCardDisplay"
-import VocabularyWordList from "./VocabularyWordList"
+import { VocabularyCardDisplay } from "./VocabularyCardDisplay"
+import { VocabularyWordList } from "./VocabularyWordList"
+
 
 
 interface Props {
@@ -29,7 +30,7 @@ interface Props {
   getTextColor: (status: boolean | null) => string
 }
 
-export default function VocabularyPageContent({
+export  function VocabularyPageContent({
   cardData,
   knownStatus,
   level,

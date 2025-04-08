@@ -1,6 +1,7 @@
 import type { VocabularyCardType } from "../../types/vocabularyTypes"
-import Card from "./Card"
+
 import IconsNavigate from "../IconsNavigate"
+import { Card } from "./Card"
 
 interface VocabularyCardDisplayProps {
   cardData: VocabularyCardType
@@ -12,7 +13,7 @@ interface VocabularyCardDisplayProps {
   isNextDisabled: boolean
 }
 
-export default function VocabularyCardDisplay(props: VocabularyCardDisplayProps) {
+export  function VocabularyCardDisplay(props: VocabularyCardDisplayProps) {
   const { cardData, knownStatus, onNext, onPrevious, isPreviousDisabled, isNextDisabled } = props
 
   // Determinar el color de fondo basado en el estado

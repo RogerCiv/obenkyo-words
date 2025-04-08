@@ -1,11 +1,13 @@
-import SkeletonCard from './SkeletonCard'
+
 import { Skeleton } from "@/components/ui/skeleton";
+import { SkeletonCard } from "./SkeletonCard";
+
 
 interface LoadingSkeletonProps {
   displayLevel: string
 }
 
-export default function LoadingSkeleton(props: LoadingSkeletonProps) {
+export  function LoadingSkeleton(props: LoadingSkeletonProps) {
   const { displayLevel } = props
   return (
     <section className="min-h-screen container mx-auto flex flex-col items-center justify-center">

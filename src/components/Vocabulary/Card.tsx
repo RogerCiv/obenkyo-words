@@ -9,7 +9,7 @@ interface CardProps {
   status?: boolean | null
 }
 
-export default function Card({ expression, meaning, reading }: CardProps) {
+export  function Card({ expression, meaning, reading }: CardProps) {
   const [flipped, setFlipped] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
 
