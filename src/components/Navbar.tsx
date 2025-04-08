@@ -141,20 +141,29 @@ const Navbar = ({
                   </Accordion>
 
                   <div className="flex flex-col gap-3">
-                    <Button asChild variant="outline">
-                      <Link to={auth.login.url}>{auth.login.title}</Link>
-                    </Button>
-                    <Button asChild>
-                      <Link to={auth.signup.url}>{auth.signup.title}</Link>
-                    </Button>
+                    {user ? (
+                      <div className="flex flex-col gap-3 font-semibold">
+                        <Link to="/profile">Perfil</Link>
+                        <Link to="/ajustes">Ajustes</Link>
+                      </div>
+                    ) : (
+                      <>
+                        <Button asChild variant="outline">
+                          <Link to={auth.login.url}>{auth.login.title}</Link>
+                        </Button>
+                        <Button asChild>
+                          <Link to={auth.signup.url}>{auth.signup.title}</Link>
+                        </Button>
+                      </>
+                    )}
                   </div>
                 </div>
               </SheetContent>
             </Sheet>
-          </div>
-        </div>
-      </div>
-    </section>
+          </div >
+        </div >
+      </div >
+    </section >
   );
 };
 
@@ -176,7 +185,7 @@ const renderMenuItem = (item: MenuItem) => {
 
   return (
     <NavigationMenuItem key={item.title}>
-      <NavigationMenuLink 
+      <NavigationMenuLink
         asChild
         className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-accent-foreground"
       >
