@@ -23,8 +23,11 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+
+
 import { useAuth } from "@/hooks/useAuth";
 import { useNavigate } from "react-router-dom";
+import DetailsAccount from "./DetailsAccount";
 
 interface MenuItem {
   title: string;
@@ -91,14 +94,7 @@ const Navbar = ({
           </div>
           <div className="flex gap-2">
             {user ? (
-              <>
-                <Button asChild variant="outline" size="sm">
-                  <a href="/profile">Perfil</a>
-                </Button>
-                <Button  variant="outline" size="sm" onClick={handleLogout}>
-                  Logout
-                </Button>
-              </>
+              <DetailsAccount user={user} handleLogout={handleLogout} />
             ) : (
               <>
                 <Button asChild variant="outline" size="sm">
@@ -232,4 +228,4 @@ const SubMenuLink = ({ item }: { item: MenuItem }) => {
   );
 };
 
-export { Navbar  };
+export { Navbar };
