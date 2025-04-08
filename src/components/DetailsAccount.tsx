@@ -9,6 +9,7 @@ import {
 import { Link } from "react-router-dom"
 import { Button } from "./ui/button"
 import { User } from "@supabase/supabase-js"
+import { UserRoundCog } from "lucide-react"
 
 interface DetailsAccountProps {
   user: User
@@ -19,7 +20,9 @@ export default function DetailsAccount(props: DetailsAccountProps) {
   const { user, handleLogout } = props
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className="cursor-pointer">Detalles Cuenta</DropdownMenuTrigger>
+      <DropdownMenuTrigger className="cursor-pointer flex items-center gap-2">
+        <UserRoundCog className="size-6" />
+      </DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuLabel>{user.user_metadata.display_name || "Usuario"}</DropdownMenuLabel>
         <DropdownMenuSeparator />
