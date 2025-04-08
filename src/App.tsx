@@ -14,6 +14,7 @@ import Noken2Page from './pages/Noken2'
 import Noken1Page from './pages/Noken1'
 import Profile from './pages/Profile'
 import PublicRoutes from './utils/PublicRoutes'
+import SettingsPage from './pages/SettingsPage'
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
             
             <Route element={<ProtectedRoutes />}>
               <Route path="/profile" element={<Profile />} />
+              <Route path="/ajustes" element={<SettingsPage />} />
             </Route>
             
             <Route path="/nokens">
