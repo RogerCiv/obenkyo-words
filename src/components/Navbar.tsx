@@ -142,9 +142,7 @@ const Navbar = ({
                   </Accordion>
 
                   <div className="flex flex-col gap-3">
-                    {user ? (
-                      <p></p>
-                    ) : (
+                    {!user && (
                       <>
                         <Button asChild variant="outline">
                           <Link to={auth.login.url}>{auth.login.title}</Link>
