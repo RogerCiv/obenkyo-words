@@ -1,6 +1,7 @@
 import { ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
 
 export function Hero() {
   // Este estado controla las animaciones de entrada
@@ -40,7 +41,7 @@ export function Hero() {
                 size="lg"
                 className="w-full sm:w-auto bg-primary hover:bg-primary/90 transition-all duration-300 hover:shadow-lg"
               >
-                <a href="/register">Comienza a aprender</a>
+                <Link to="/register">Comienza a aprender</Link>
               </Button>
 
               <Button
@@ -49,10 +50,10 @@ export function Hero() {
                 size="lg"
                 className="w-full sm:w-auto border-2 hover:border-primary/70 transition-all duration-300 group"
               >
-                <a href="/nokens" className="flex items-center gap-2">
+                <Link to="/nokens" className="flex items-center gap-2">
                   Nokens
                   <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
-                </a>
+                </Link>
               </Button>
             </div>
 
