@@ -3,7 +3,7 @@
 import { Play } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { ScrollArea } from "@/components/ui/scroll-area"
-import type { VocabularyCardType } from "../types/vocabularyTypes"
+import type { VocabularyCardType } from "../../types/vocabularyTypes"
 
 interface VocabularyWordListProps {
   level: string

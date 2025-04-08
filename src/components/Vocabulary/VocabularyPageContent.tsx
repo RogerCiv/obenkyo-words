@@ -2,11 +2,13 @@ import { useState, useEffect } from "react"
 import { Separator } from "@/components/ui/separator"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+
+import KnowledgeButtons from "../KnowledgeButtons"
+
+import type { VocabularyCardType } from "../../types/vocabularyTypes"
+import { PaginationCard } from "../PaginationCard"
 import VocabularyCardDisplay from "./VocabularyCardDisplay"
-import KnowledgeButtons from "./KnowledgeButtons"
 import VocabularyWordList from "./VocabularyWordList"
-import type { VocabularyCardType } from "../types/vocabularyTypes"
-import { PaginationCard } from "./PaginationCard"
 
 
 interface Props {
