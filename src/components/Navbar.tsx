@@ -105,8 +105,6 @@ const Navbar = ({
                 </Button>
               </>
             )}
-
-
           </div>
         </nav>
 
@@ -119,9 +117,12 @@ const Navbar = ({
             </Link>
             <Sheet>
               <SheetTrigger asChild>
-                <Button variant="outline" size="icon">
-                  <Menu className="size-4" />
-                </Button>
+                <div className="flex items-center gap-4">
+                  {user && <DetailsAccount user={user} handleLogout={handleLogout} />}
+                  <Button variant="outline" size="icon">
+                    <Menu className="size-4" />
+                  </Button>
+                </div>
               </SheetTrigger>
               <SheetContent className="overflow-y-auto">
                 <SheetHeader>
@@ -142,10 +143,7 @@ const Navbar = ({
 
                   <div className="flex flex-col gap-3">
                     {user ? (
-                      <div className="flex flex-col gap-3 font-semibold">
-                        <Link to="/profile">Perfil</Link>
-                        <Link to="/ajustes">Ajustes</Link>
-                      </div>
+                      <p></p>
                     ) : (
                       <>
                         <Button asChild variant="outline">
