@@ -20,7 +20,7 @@ export  function CardNokenLevels({ levelCard }: CardNokenLevelsProps) {
   }
 
   return (
-    <div className="rounded-lg bg-white shadow-sm overflow-hidden flex flex-col max-w-xl">
+    <div className="rounded-lg bg-secondary shadow-sm overflow-hidden flex flex-col max-w-xl">
       {/* Imagen que rellena completamente la parte superior */}
       <div className="w-full h-64 overflow-hidden">
         <img
@@ -37,7 +37,7 @@ export  function CardNokenLevels({ levelCard }: CardNokenLevelsProps) {
         <p className="text-foreground text-sm mb-4 flex-grow">{levelCard.description}</p>
 
         <div className="flex justify-end mt-auto">
-          <Button onClick={handleEntrar} className="bg-sky-600 hover:bg-sky-700 text-white cursor-pointer" size="sm">
+          <Button onClick={handleEntrar} className=" cursor-pointer" size="sm">
             Entrar
           </Button>
         </div>
