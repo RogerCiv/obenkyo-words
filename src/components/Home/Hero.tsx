@@ -16,12 +16,11 @@ export function Hero() {
             </div>
 
             <h1 className="mt-6 mb-4 text-4xl font-bold text-pretty md:text-5xl lg:text-6xl bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              Domina los Nokens
+              Estudia con Tarjetas: Vocabulario Noken
             </h1>
 
             <p className="mb-8 max-w-xl text-base-content/70 text-lg md:text-xl">
-              Bienvenido a tu web de vocabulario de nokens. Aprende de manera moderna y elegante, y expande tu
-              conocimiento con cada token.
+              Prepara cada nivel del examen Noken (JLPT) con nuestro sistema intuitivo de tarjetas que te ayuda a dominar el vocabulario esencial.
             </p>
 
             <div className="flex w-full flex-col justify-center gap-3 sm:flex-row lg:justify-start">
