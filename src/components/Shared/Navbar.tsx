@@ -24,14 +24,11 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 
-
 import { useAuth } from "@/hooks/useAuth";
 import { Link, useNavigate } from "react-router-dom";
 import { DetailsAccount } from "../Navigation";
 import { ModeToggle } from "../mode-toggle";
 import { Logo } from "./Logo";
-
-
 
 interface MenuItem {
   title: string;
@@ -42,12 +39,6 @@ interface MenuItem {
 }
 
 interface NavbarProps {
-  logo?: {
-    url: string;
-    src: string;
-    alt: string;
-    title: string;
-  };
   menu?: MenuItem[];
   auth?: {
     login: {
@@ -62,11 +53,9 @@ interface NavbarProps {
 }
 
 const Navbar = ({
-  logo = defaultNavbarData.logo,
   menu = defaultNavbarData.menu,
   auth = defaultNavbarData.auth,
 }: NavbarProps) => {
-
   const { user, logout } = useAuth();
 
   const navigate = useNavigate();
@@ -112,55 +101,51 @@ const Navbar = ({
         <div className="block lg:hidden">
           <div className="flex items-center justify-between">
             {/* Logo */}
-            <Link to={logo.url} className="flex items-center gap-2">
-              <img src={logo.src} className="max-h-8" alt={logo.alt} />
-            </Link>
-            <Sheet>
-              <SheetTrigger asChild>
-                <div className="flex items-center gap-4">
-                <ModeToggle />
-                  {user && <DetailsAccount user={user} handleLogout={handleLogout} />}
+            <Logo />
+            <div className="flex items-center gap-4">
+              <ModeToggle />
+              {user && <DetailsAccount user={user} handleLogout={handleLogout} />}
+              <Sheet>
+                <SheetTrigger asChild>
                   <Button variant="outline" size="icon">
                     <Menu className="size-4" />
                   </Button>
-                </div>
-              </SheetTrigger>
-              <SheetContent className="overflow-y-auto">
-                <SheetHeader>
-                  <SheetTitle>
-                    <Link to={logo.url} className="flex items-center gap-2">
-                      <img src={logo.src} className="max-h-8" alt={logo.alt} />
-                    </Link>
-                  </SheetTitle>
-                </SheetHeader>
-                <div className="flex flex-col gap-6 p-4">
-                  <Accordion
-                    type="single"
-                    collapsible
-                    className="flex w-full flex-col gap-4"
-                  >
-                    {menu.map((item) => renderMobileMenuItem(item))}
-                  </Accordion>
+                </SheetTrigger>
+                <SheetContent className="overflow-y-auto">
+                  <SheetHeader>
+                    <SheetTitle>
+                      <Logo />
+                    </SheetTitle>
+                  </SheetHeader>
+                  <div className="flex flex-col gap-6 p-4">
+                    <Accordion
+                      type="single"
+                      collapsible
+                      className="flex w-full flex-col gap-4"
+                    >
+                      {menu.map((item) => renderMobileMenuItem(item))}
+                    </Accordion>
 
-                  <div className="flex flex-col gap-3">
-                    {!user && (
-                      <>
-                        <Button asChild variant="outline">
-                          <Link to={auth.login.url}>{auth.login.title}</Link>
-                        </Button>
-                        <Button asChild>
-                          <Link to={auth.signup.url}>{auth.signup.title}</Link>
-                        </Button>
-                      </>
-                    )}
+                    <div className="flex flex-col gap-3">
+                      {!user && (
+                        <>
+                          <Button asChild variant="outline">
+                            <Link to={auth.login.url}>{auth.login.title}</Link>
+                          </Button>
+                          <Button asChild>
+                            <Link to={auth.signup.url}>{auth.signup.title}</Link>
+                          </Button>
+                        </>
+                      )}
+                    </div>
                   </div>
-                </div>
-              </SheetContent>
-            </Sheet>
-          </div >
-        </div >
-      </div >
-    </section >
+                </SheetContent>
+              </Sheet>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 };
 
@@ -168,7 +153,9 @@ const renderMenuItem = (item: MenuItem) => {
   if (item.items) {
     return (
       <NavigationMenuItem key={item.title}>
-        <NavigationMenuTrigger className="font-semibold">{item.title}</NavigationMenuTrigger>
+        <NavigationMenuTrigger className="font-semibold">
+          {item.title}
+        </NavigationMenuTrigger>
         <NavigationMenuContent className="bg-popover text-popover-foreground">
           {item.items.map((subItem) => (
             <NavigationMenuLink asChild key={subItem.title} className="w-80">
