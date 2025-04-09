@@ -62,7 +62,7 @@ export function Hero() {
                 {[1, 2, 3, 4].map((i) => (
                   <div key={i} className="avatar">
                     <div className="w-8 h-8 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                      <img src={`/placeholder.svg?height=32&width=32&text=${i}`} alt={`Usuario ${i}`} />
+                      <img src={`/placeholder.svg?height=32&width=32&text=${i}`} alt={`U ${i}`} />
                     </div>
                   </div>
                 ))}
@@ -85,16 +85,6 @@ export function Hero() {
                 alt="Aprendizaje de japonés con Nokens"
                 className="w-full h-auto object-cover aspect-[4/3] hover:scale-105 transition-transform duration-700"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-base-300/80 to-transparent"></div>
-              <div className="absolute bottom-4 left-4 right-4 p-4 bg-base-100/80 backdrop-blur-sm rounded-xl">
-                <div className="flex items-center gap-3">
-                  <div className="badge badge-primary">N5</div>
-                  <div className="badge badge-secondary">N4</div>
-                  <div className="badge badge-accent">N3</div>
-                  <div className="badge">N2</div>
-                  <div className="badge">N1</div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
