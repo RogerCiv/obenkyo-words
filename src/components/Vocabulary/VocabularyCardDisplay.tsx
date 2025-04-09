@@ -20,7 +20,7 @@ export  function VocabularyCardDisplay(props: VocabularyCardDisplayProps) {
   // Determinar el color de fondo basado en el estado
   const getBgColor = () => {
     if (knownStatus === true) return "bg-green-400 border-2 border-green-900"
-    if (knownStatus === false) return "bg-red-400 border-2 border-red-900"
+    if (knownStatus === false) return "bg-destructive border-2 border-red-900"
     return "bg-muted border border-border"
   }
 

@@ -23,7 +23,7 @@ export default function KnowledgeButtons(props: KnowledgeButtonsProps) {
       </button>
       <button
         onClick={onNotKnown}
-        className={`bg-red-500 hover:bg-red-500/80 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline cursor-pointer ${isNotKnownBool ? 'opacity-70 cursor-not-allowed' : ''}`}
+        className={`bg-destructive hover:bg-destructive/80 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline cursor-pointer ${isNotKnownBool ? 'opacity-70 cursor-not-allowed' : ''}`}
         disabled={isNotKnownBool}
       >
        <X className="size-7 font-bold text-black" />

@@ -122,7 +122,7 @@ const useVocabularyStatus = ({ level, currentCard }: UseVocabularyStatusProps = 
 
   const getTextColor = (status?: boolean | null): string => {
     if (status === true) return "bg-green-500/50";
-    if (status === false) return "bg-red-500/50";
+    if (status === false) return "bg-destructive";
 
     return "bg-blue-300";
   };
