@@ -2,7 +2,7 @@ import { Github, Twitter } from "lucide-react"
 import { Link } from "react-router-dom"
 
 
-export default function Footer() {
+export  function Footer() {
   const currentYear = new Date().getFullYear()
 
   return (
