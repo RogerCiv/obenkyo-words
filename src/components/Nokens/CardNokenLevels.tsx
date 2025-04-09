@@ -32,12 +32,12 @@ export  function CardNokenLevels({ levelCard }: CardNokenLevelsProps) {
 
       {/* Contenido con padding */}
       <div className="p-5 flex flex-col flex-grow">
-        <h3 className="text-xl font-bold text-primary mb-2">{levelCard.title}</h3>
+        <h3 className="text-2xl font-bold text-primary mb-2">{levelCard.title}</h3>
 
         <p className="text-foreground text-sm mb-4 flex-grow">{levelCard.description}</p>
 
         <div className="flex justify-end mt-auto">
-          <Button onClick={handleEntrar} className=" cursor-pointer" size="sm">
+          <Button onClick={handleEntrar} className=" cursor-pointer text-foreground font-semibold" size="sm">
             Entrar
           </Button>
         </div>
