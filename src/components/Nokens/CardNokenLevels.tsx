@@ -12,7 +12,7 @@ interface CardNokenLevelsProps {
   }
 }
 
-export default function CardNokenLevels({ levelCard }: CardNokenLevelsProps) {
+export  function CardNokenLevels({ levelCard }: CardNokenLevelsProps) {
   const navigate = useNavigate()
 
   const handleEntrar = () => {

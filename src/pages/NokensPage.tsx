@@ -1,4 +1,5 @@
-import CardNokenLevels from "../components/CardNokenLevels";
+import { CardNokenLevels } from "@/components";
+
 
 export default function NokensPage() {
   const niveles = [
