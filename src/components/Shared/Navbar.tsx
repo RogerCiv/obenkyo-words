@@ -28,6 +28,7 @@ import {
 import { useAuth } from "@/hooks/useAuth";
 import { Link, useNavigate } from "react-router-dom";
 import { DetailsAccount } from "../Navigation";
+import { ModeToggle } from "../mode-toggle";
 
 
 
@@ -94,7 +95,8 @@ const Navbar = ({
               </NavigationMenu>
             </div>
           </div>
-          <div className="flex gap-2">
+          <div className="flex items-center justify-center gap-4">
+            <ModeToggle />
             {user ? (
               <DetailsAccount user={user} handleLogout={handleLogout} />
             ) : (
@@ -120,6 +122,7 @@ const Navbar = ({
             <Sheet>
               <SheetTrigger asChild>
                 <div className="flex items-center gap-4">
+                <ModeToggle />
                   {user && <DetailsAccount user={user} handleLogout={handleLogout} />}
                   <Button variant="outline" size="icon">
                     <Menu className="size-4" />
