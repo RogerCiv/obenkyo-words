@@ -49,15 +49,15 @@ export default function SettingsPage() {
     <div className="container mx-auto py-10 px-10 md:px-0">
       <h2 className="text-2xl font-semibold mb-4">Ajustes de Cuenta</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="p-6 bg-gray-300 rounded shadow">
+        <div className="p-6 bg-background border border-border rounded shadow">
           <Form {...formPassword}>
-            <form onSubmit={formPassword.handleSubmit(handlePasswordChange)} className="space-y-4">
+            <form onSubmit={formPassword.handleSubmit(handlePasswordChange)} className="space-y-4 p-2">
               <FormField
                 control={formPassword.control}
                 name="oldPassword"
                 render={({ field }) => (
                   <div>
-                    <FormLabel htmlFor="oldPassword">Contraseña Actual</FormLabel>
+                    <FormLabel htmlFor="oldPassword" className="mb-2">Contraseña Actual</FormLabel>
                     <FormControl>
                       <Input id="oldPassword" type="password" {...field} />
                     </FormControl>
@@ -70,7 +70,7 @@ export default function SettingsPage() {
                 name="newPassword"
                 render={({ field }) => (
                   <div>
-                    <FormLabel htmlFor="newPassword">Nueva Contraseña</FormLabel>
+                    <FormLabel htmlFor="newPassword" className="mb-2">Nueva Contraseña</FormLabel>
                     <FormControl>
                       <Input id="newPassword" type="password" {...field} />
                     </FormControl>
@@ -84,15 +84,15 @@ export default function SettingsPage() {
             </form>
           </Form>
         </div>
-        <div className="p-6 bg-gray-300 rounded shadow">
+        <div className="p-6 bg-background border border-border rounded shadow">
           <Form {...formDisplay}>
-            <form onSubmit={formDisplay.handleSubmit(handleUpdateDisplayName)} className="space-y-4 mt-4">
+            <form onSubmit={formDisplay.handleSubmit(handleUpdateDisplayName)} className="space-y-4 p-2">
               <FormField
                 control={formDisplay.control}
                 name="displayName"
                 render={({ field }) => (
                   <div>
-                    <FormLabel htmlFor="displayName">Nombre para mostrar</FormLabel>
+                    <FormLabel htmlFor="displayName" className="mb-2">Nombre para mostrar</FormLabel>
                     <FormControl>
                       <Input id="displayName" type="text" {...field} />
                     </FormControl>
