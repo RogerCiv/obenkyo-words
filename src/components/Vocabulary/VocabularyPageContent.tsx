@@ -6,9 +6,12 @@ import { Badge } from "@/components/ui/badge"
 import KnowledgeButtons from "../KnowledgeButtons"
 
 import type { VocabularyCardType } from "../../types/vocabularyTypes"
-import { PaginationCard } from "../PaginationCard"
 import { VocabularyCardDisplay } from "./VocabularyCardDisplay"
+import { PaginationCard } from "../Pagination"
 import { VocabularyWordList } from "./VocabularyWordList"
+
+
+
 
 
 
