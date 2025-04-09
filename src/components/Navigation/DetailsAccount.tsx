@@ -20,7 +20,7 @@ export  function DetailsAccount(props: DetailsAccountProps) {
   const { user, handleLogout } = props
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className="cursor-pointer flex items-center gap-2">
+      <DropdownMenuTrigger className="cursor-pointer flex items-center gap-2 hover:scale-110">
         <UserRoundCog className="size-6" />
       </DropdownMenuTrigger>
       <DropdownMenuContent>
