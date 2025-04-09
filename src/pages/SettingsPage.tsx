@@ -78,7 +78,7 @@ export default function SettingsPage() {
                   </div>
                 )}
               />
-              <Button type="submit" className="cursor-pointer">Cambiar Contraseña</Button>
+              <Button type="submit" className="cursor-pointer text-foreground">Cambiar Contraseña</Button>
               {message && <p className="mt-2 text-sm text-green-600">{message}</p>}
               {error && <p className="mt-2 text-sm text-red-600">{error}</p>}
             </form>
@@ -100,7 +100,7 @@ export default function SettingsPage() {
                   </div>
                 )}
               />
-              <Button type="submit" className="cursor-pointer">Cambiar Nombre</Button>
+              <Button type="submit" className="cursor-pointer text-foreground">Cambiar Nombre</Button>
               {message && <p className="mt-2 text-sm text-green-600">{message}</p>}
               {error && <p className="mt-2 text-sm text-red-600">{error}</p>}
             </form>
