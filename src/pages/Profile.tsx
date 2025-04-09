@@ -1,7 +1,6 @@
-"use client"
-
+import { StudyCalendar } from "@/components";
 import { NokenCharts } from "@/components/NokenCharts";
-import { StudyCalendar } from "@/components/StudyCalendar";
+
 import { useAuth } from "@/hooks/useAuth";
 import useVocabularyStatus from "@/hooks/useVocabularyStatus";
 
