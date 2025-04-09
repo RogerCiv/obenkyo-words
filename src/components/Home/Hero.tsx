@@ -1,26 +1,15 @@
 import { ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 
 export function Hero() {
-  // Este estado controla las animaciones de entrada
-  // Comienza como false y cambia a true cuando el componente se monta
-  // lo que activa las animaciones de los elementos
-  const [isVisible, setIsVisible] = useState(false)
-
-  useEffect(() => {
-    setIsVisible(true)
-  }, [])
 
   return (
     <section className="py-12 md:py-20 lg:py-32 overflow-hidden bg-gradient-to-br from-base-100 to-base-200">
       <div className="container px-4 mx-auto">
         <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
           <div
-            className={`flex flex-col items-center text-center lg:items-start lg:text-left transition-all duration-700 ${
-              isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
-            }`}
+            className={`flex flex-col items-center text-center lg:items-start lg:text-left transition-all duration-700 `}
           >
             <div className="inline-flex items-center px-3 py-1 text-sm font-medium rounded-full bg-primary/10 text-primary">
               日本語 JLPT
@@ -39,7 +28,7 @@ export function Hero() {
               <Button
                 asChild
                 size="lg"
-                className="w-full sm:w-auto bg-primary hover:bg-primary/90 transition-all duration-300 hover:shadow-lg"
+                className="w-full sm:w-auto bg-primary hover:bg-primary/90 transition-all duration-300 hover:shadow-lg text-foreground font-semibold"
               >
                 <Link to="/register">Comienza a aprender</Link>
               </Button>
@@ -48,7 +37,7 @@ export function Hero() {
                 asChild
                 variant="outline"
                 size="lg"
-                className="w-full sm:w-auto border-2 hover:border-primary/70 transition-all duration-300 group"
+                className="w-full sm:w-auto border-2 hover:border-primary/70 transition-all duration-300 group text-foreground font-semibold"
               >
                 <Link to="/nokens" className="flex items-center gap-2">
                   Nokens
@@ -74,9 +63,7 @@ export function Hero() {
           </div>
 
           <div
-            className={`relative transition-all duration-1000 delay-300 ${
-              isVisible ? "translate-x-0 opacity-100" : "translate-x-10 opacity-0"
-            }`}
+            className={`relative transition-all duration-1000 delay-300`}
           >
             <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-accent/20 rounded-2xl blur-3xl opacity-30 -z-10 transform -rotate-6"></div>
             <div className="relative overflow-hidden rounded-2xl shadow-2xl">
