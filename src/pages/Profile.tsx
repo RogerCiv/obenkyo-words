@@ -1,5 +1,4 @@
-import { StudyCalendar } from "@/components";
-import { NokenCharts } from "@/components/NokenCharts";
+import { NokenCharts, StudyCalendar } from "@/components";
 
 import { useAuth } from "@/hooks/useAuth";
 import useVocabularyStatus from "@/hooks/useVocabularyStatus";

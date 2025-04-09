@@ -1,6 +1,6 @@
 import { PieChart, Pie, Label } from "recharts"
-import useVocabularyStatus from "../hooks/useVocabularyStatus"
-import useFetchData from "../hooks/useFetchData"
+import useVocabularyStatus from "../../hooks/useVocabularyStatus"
+import useFetchData from "../../hooks/useFetchData"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { ChartContainer, ChartTooltip, ChartTooltipContent, type ChartConfig } from "@/components/ui/chart"
 
