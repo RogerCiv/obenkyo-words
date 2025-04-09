@@ -1,6 +1,6 @@
 
 
-export default function AlertMessage() {
+export function AlertMessage() {
 
   return (
     <div className="sticky top-0 z-50">

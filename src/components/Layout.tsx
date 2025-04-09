@@ -1,9 +1,9 @@
 import { Outlet } from 'react-router-dom'
 import { Toaster } from "@/components/ui/sonner"
 
-import AlertMessage from './AlertMessage'
 import { Analytics } from '@vercel/analytics/react'
 import { Footer, Navbar } from './Shared'
+import { AlertMessage } from './Home'
 
 
 
