@@ -1,6 +1,7 @@
 import type { VocabularyCardType } from "../../types/vocabularyTypes"
+import { IconsNavigate } from "../Navigation"
 
-import IconsNavigate from "../IconsNavigate"
+
 import { Card } from "./Card"
 
 interface VocabularyCardDisplayProps {

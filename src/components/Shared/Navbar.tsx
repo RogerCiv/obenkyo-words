@@ -27,7 +27,8 @@ import {
 
 import { useAuth } from "@/hooks/useAuth";
 import { Link, useNavigate } from "react-router-dom";
-import DetailsAccount from "../DetailsAccount";
+import { DetailsAccount } from "../Navigation";
+
 
 
 interface MenuItem {

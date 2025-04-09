@@ -7,7 +7,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Link } from "react-router-dom"
-import { Button } from "./ui/button"
+import { Button } from "../ui/button"
 import { User } from "@supabase/supabase-js"
 import { UserRoundCog } from "lucide-react"
 
@@ -16,7 +16,7 @@ interface DetailsAccountProps {
   handleLogout: () => void
 }
 
-export default function DetailsAccount(props: DetailsAccountProps) {
+export  function DetailsAccount(props: DetailsAccountProps) {
   const { user, handleLogout } = props
   return (
     <DropdownMenu>

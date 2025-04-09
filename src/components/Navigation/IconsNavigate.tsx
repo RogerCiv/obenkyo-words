@@ -8,7 +8,7 @@ interface IconsNavigateProps {
   isNextDisabled: boolean;
 }
 
-export default function IconsNavigate(props: IconsNavigateProps) {
+export  function IconsNavigate(props: IconsNavigateProps) {
   const { knownStatus, isNextDisabled, isPreviousDisabled, onNext, onPrevious } = props;
   return (
     <div className="flex items-center justify-between mt-2">
