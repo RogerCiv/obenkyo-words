@@ -1,12 +1,6 @@
 import { Zap, Sunset, Trees, Book } from "lucide-react";
 
 export const defaultNavbarData = {
-  logo: {
-    url: "/",
-    src: "images/logo.jpeg",
-    alt: "logo",
-    title: "Noken Vocabulary",
-  },
   menu: [
     { title: "Home", url: "/" },
     {
