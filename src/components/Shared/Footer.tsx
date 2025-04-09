@@ -1,26 +1,16 @@
 import { Github, Twitter } from "lucide-react"
 import { Link } from "react-router-dom"
+import { Logo } from "./Logo"
 
 
-export  function Footer() {
+export function Footer() {
   const currentYear = new Date().getFullYear()
 
   return (
     <footer className="border-t bg-primary/70">
       <div className="container mx-auto px-4 py-10">
         <div className="flex flex-col items-center justify-center gap-6 md:flex-row md:justify-between">
-          <div className="flex flex-col items-center gap-2 md:flex-row md:gap-4">
-            <img
-              src="/images/logo.jpeg"
-              alt="Noken Vocabulary Logo"
-              className="h-12 w-12 rounded-full object-cover shadow-sm"
-            />
-            <div className="text-center md:text-left">
-              <h3 className="text-lg font-semibold text-foreground">Noken Vocabulary</h3>
-              <p className="text-sm text-foreground">Vocabulario en español de los noken</p>
-            </div>
-          </div>
-
+          <Logo />
           <div className="flex flex-col items-center gap-4 md:flex-row">
             <nav className="flex gap-4">
               <Link to="/about" className="text-sm text-foreground transition-colors hover:opacity-80">
@@ -59,7 +49,7 @@ export  function Footer() {
 
         <div className="mt-8 flex flex-col items-center justify-center border-t border-border pt-6 text-center">
           <p className="text-sm text-foreground">
-            © {currentYear} Noken Vocabulary. 
+            © {currentYear} Noken Vocabulary. Vocabulario en español de los nokens.
           </p>
           <p className="mt-1 text-xs text-foreground">
             Desarrollado por{" "}

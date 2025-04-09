@@ -29,6 +29,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { Link, useNavigate } from "react-router-dom";
 import { DetailsAccount } from "../Navigation";
 import { ModeToggle } from "../mode-toggle";
+import { Logo } from "./Logo";
 
 
 
@@ -81,12 +82,7 @@ const Navbar = ({
         <nav className="hidden justify-between lg:flex">
           <div className="flex items-center gap-6">
             {/* Logo */}
-            <Link to={logo.url} className="flex items-center gap-2">
-              <img src={logo.src} className="max-h-8" alt={logo.alt} />
-              <span className="text-lg font-semibold tracking-tighter">
-                {logo.title}
-              </span>
-            </Link>
+            <Logo />
             <div className="flex items-center">
               <NavigationMenu>
                 <NavigationMenuList>
