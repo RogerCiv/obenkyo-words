@@ -1,10 +1,14 @@
 
 import useVocabularyStatus from "../hooks/useVocabularyStatus";
-import VocabularyPageContent from "../components/VocabularyPageContent";
+
 import { VocabularyCardType } from "../types/vocabularyTypes";
 
-import LoadingSkeleton from "../components/LoadingSkeleton";
 import useFetchData from "../hooks/useFetchData";
+
+import { LoadingSkeleton, VocabularyPageContent } from "@/components";
+
+
+
 
 
 interface GenericVocabularyPageProps {
@@ -44,7 +48,7 @@ export default function GenericVocabularyPage({ levelKey, displayLevel }: Generi
 	}
 
 	return (
-		<section className="min-h-screen container mx-auto flex flex-col justify-center">
+		<section className="container mx-auto py-32">
 			<VocabularyPageContent
 				vocabularyList={vocabularyCards}
 				onWordSelect={handleWordSelect}

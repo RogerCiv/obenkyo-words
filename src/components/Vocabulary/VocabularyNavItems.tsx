@@ -9,7 +9,7 @@ const nokenLinks = [
 ]
 
 
-export default function VocabularyNavItems() {
+export  function VocabularyNavItems() {
   return (
     <details>
       <summary>Vocabulario</summary>
@@ -17,6 +17,7 @@ export default function VocabularyNavItems() {
         {nokenLinks.map((link) => (
           <li key={link.to}>
             <Link to={link.to}>{link.label}</Link>
+            PERRO
           </li>
         ))}
       </ul>

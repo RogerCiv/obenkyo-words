@@ -1,0 +1,123 @@
+import { PieChart, Pie, Label } from "recharts"
+import useVocabularyStatus from "../../hooks/useVocabularyStatus"
+import useFetchData from "../../hooks/useFetchData"
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { ChartContainer, ChartTooltip, ChartTooltipContent, type ChartConfig } from "@/components/ui/chart"
+
+// Mapeo de niveles JLPT a nombres amigables
+const levelNames: Record<string, string> = {
+  jlpt_n1: "JLPT N1",
+  jlpt_n2: "JLPT N2",
+  jlpt_n3: "JLPT N3",
+  jlpt_n4: "JLPT N4",
+  jlpt_n5: "JLPT N5",
+}
+
+// Definir los niveles deseados (ordenados de menor a mayor dificultad)
+const levels = ["jlpt_n5", "jlpt_n4", "jlpt_n3", "jlpt_n2", "jlpt_n1"]
+
+// Configuración del gráfico
+const chartConfig = {
+  value: {
+    label: "Palabras",
+  },
+  known: {
+    label: "Aprendidas",
+    color: "hsl(var(--chart-2))",
+  },
+  notKnown: {
+    label: "No Aprendidas",
+    color: "hsl(var(--chart-1))",
+  },
+  pending: {
+    label: "Sin Estado",
+    color: "hsl(var(--chart-3))",
+  },
+} satisfies ChartConfig
+
+export function NokenCharts() {
+  return (
+    <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+      {levels.map((level) => (
+        <NokenLevelChart key={level} level={level} />
+      ))}
+    </div>
+  )
+}
+
+interface NokenLevelChartProps {
+  level: string
+}
+
+function NokenLevelChart({ level }: NokenLevelChartProps) {
+  // Usar useFetchData para obtener todas las tarjetas de vocabulario de este nivel
+  const { vocabularyCards } = useFetchData(level)
+  const totalWords = vocabularyCards.length
+  
+  // Calcular el estado del usuario (solo de las palabras ya respondidas)
+  const { wordsStatusMap } = useVocabularyStatus({ level, currentCard: undefined })
+  const knownCount = Object.values(wordsStatusMap).filter((status) => status === true).length
+  const notKnownCount = Object.values(wordsStatusMap).filter((status) => status === false).length
+
+  // Calcular las palabras pendientes (total dinámico)
+  const pendingCount = totalWords - (knownCount + notKnownCount)
+
+  // Datos para el gráfico, usando el total conocido, no conocido y pendientes
+  const chartData = [
+    { category: "known", value: knownCount, fill: "var(--color-chart-2)" },
+    { category: "notKnown", value: notKnownCount, fill: "var(--color-chart-1)" },
+    { category: "pending", value: pendingCount, fill: "var(--color-chart-3)" },
+  ]
+
+
+  return (
+    <Card className="flex flex-col">
+      <CardHeader className="items-center pb-0">
+        <CardTitle>{levelNames[level] || level.toUpperCase()}</CardTitle>
+        <CardDescription>Estadísticas de vocabulario</CardDescription>
+        <div className="flex flex-wrap items-center justify-center gap-4 mt-4 -mb-5">
+          <span className="flex items-center gap-1 text-sm text-muted-foreground">
+            <span className="w-3 h-3 rounded-full bg-chart-2" /> Aprendidas </span>
+          <span className="flex items-center gap-1 text-sm text-muted-foreground">
+            <span className="w-3 h-3 rounded-full bg-chart-1" /> No Aprendidas </span>
+          <span className="flex items-center gap-1 text-sm text-muted-foreground">
+            <span className="w-3 h-3 rounded-full bg-chart-3" /> Sin Estado </span>
+
+          
+        </div>
+      </CardHeader>
+      <CardContent className="flex-1 pb-0">
+        <ChartContainer className="mx-auto aspect-square max-h-[250px]" config={chartConfig}>
+          <PieChart>
+            <ChartTooltip cursor={false} content={<ChartTooltipContent hideLabel />} />
+            <Pie data={chartData} dataKey="value" nameKey="category" innerRadius={60} outerRadius={80} strokeWidth={5}>
+              <Label
+                position="center"
+                content={({ viewBox }) => {
+                  if (viewBox && "cx" in viewBox && "cy" in viewBox) {
+                    return (
+                      <text x={viewBox.cx} y={viewBox.cy} textAnchor="middle" dominantBaseline="middle">
+                        <tspan x={viewBox.cx} y={viewBox.cy} className="fill-foreground text-3xl font-bold">
+                          {totalWords.toLocaleString()}
+                        </tspan>
+                        <tspan x={viewBox.cx} y={(viewBox.cy || 0) + 24} className="fill-muted-foreground text-sm">
+                          Palabras
+                        </tspan>
+                      </text>
+                    )
+                  }
+                }}
+              />
+            </Pie>
+          </PieChart>
+        </ChartContainer>
+      </CardContent>
+      <CardFooter className="flex-col gap-2 text-sm">
+        <div className="leading-none text-muted-foreground">
+          {Math.round((knownCount / totalWords) * 100)}% de palabras aprendidas ({knownCount} de {totalWords})
+        </div>
+      </CardFooter>
+    </Card>
+  )
+}
+

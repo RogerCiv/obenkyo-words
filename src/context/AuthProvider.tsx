@@ -40,12 +40,29 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 		if (error) throw error;
 	};
 
+	const updatePassword = async (oldPassword: string, newPassword: string) => {
+		// Re-autenticar con la contraseña actual
+		const { error: signInError } = await supabase.auth.signInWithPassword({ email: user?.email ?? '', password: oldPassword });
+		if (signInError) throw signInError;
+		// Actualizar la contraseña
+		const { error: updateError } = await supabase.auth.updateUser({ password: newPassword });
+		if (updateError) throw updateError;
+	};
+
+	const updateDisplayName = async (displayName: string) => {
+		const { error } = await supabase.auth.updateUser({ data: { display_name: displayName } });
+		if (error) throw error;	
+	}
+
 	const data = {
 		user,
 		loading,
 		login,
 		logout,
-		register
+		register,
+		updatePassword,
+		updateDisplayName,
+
 	};
 
 	return <AuthContext.Provider value={data}>{children}</AuthContext.Provider>;

@@ -5,7 +5,7 @@ interface NavigationButtonsProps {
   isPreviousDisabled: boolean;
   isNextDisabled: boolean;
 }
-export default function NavigationButtons(props: NavigationButtonsProps) {
+export  function NavigationButtons(props: NavigationButtonsProps) {
   const { onPrevious, onNext, isPreviousDisabled, isNextDisabled } = props;
 
 

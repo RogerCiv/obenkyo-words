@@ -1,11 +1,13 @@
 
-import SkeletonCard from './SkeletonCard'
+import { Skeleton } from "@/components/ui/skeleton";
+import { SkeletonCard } from "./SkeletonCard";
+
 
 interface LoadingSkeletonProps {
   displayLevel: string
 }
 
-export default function LoadingSkeleton(props: LoadingSkeletonProps) {
+export  function LoadingSkeleton(props: LoadingSkeletonProps) {
   const { displayLevel } = props
   return (
     <section className="min-h-screen container mx-auto flex flex-col items-center justify-center">
@@ -20,16 +22,16 @@ export default function LoadingSkeleton(props: LoadingSkeletonProps) {
         <div className="w-full lg:w-1/2">
           {/* Skeleton para la lista de palabras simulada */}
           <div className="bg-base-200 rounded-box shadow-md p-4">
-            <div className="skeleton h-6 w-40 mb-4"></div>
+            <Skeleton className="h-6 w-40 mb-4 bg-accent" />
             <ul className="space-y-2">
               {[...Array(5)].map((_, i) => (
-                <div key={i} className="skeleton h-14 w-full"></div>
+                <Skeleton key={i} className="h-14 w-full bg-accent" />
               ))}
             </ul>
           </div>
           {/* Skeleton para paginación */}
           <div className="mt-4">
-            <div className="skeleton h-8 w-full"></div>
+            <Skeleton className="h-8 w-full bg-accent" />
           </div>
         </div>
       </div>

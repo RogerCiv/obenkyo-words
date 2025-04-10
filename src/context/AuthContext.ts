@@ -7,6 +7,8 @@ export interface AuthContextType {
 	login: (email: string, password: string) => Promise<void>;
 	logout: () => Promise<void>;
 	register: (email: string, password: string) => Promise<void>;
+	updatePassword: (oldPassword: string, newPassword: string) => Promise<void>;
+	updateDisplayName: (displayName: string) => Promise<void>;
 }
 
 export const AuthContext = createContext<AuthContextType>({
@@ -14,5 +16,7 @@ export const AuthContext = createContext<AuthContextType>({
 	loading: true,
 	login: async () => {},
 	logout: async () => {},
-	register: async () => {}
+	register: async () => {},
+	updatePassword: async () => {},
+	updateDisplayName: async () => {},
 });
