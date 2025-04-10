@@ -10,11 +10,6 @@ import { VocabularyCardDisplay } from "./VocabularyCardDisplay"
 import { PaginationCard } from "../Pagination"
 import { VocabularyWordList } from "./VocabularyWordList"
 
-
-
-
-
-
 interface Props {
   cardData: VocabularyCardType
   knownStatus: boolean | null
@@ -33,7 +28,7 @@ interface Props {
   getTextColor: (status: boolean | null) => string
 }
 
-export  function VocabularyPageContent({
+export function VocabularyPageContent({
   cardData,
   knownStatus,
   level,
@@ -115,7 +110,7 @@ export  function VocabularyPageContent({
                 </div>
                 <div>
                   <span className="font-semibold">No Conocidas: </span>
-                  <Badge variant="outline" className="bg-red-50 text-red-700 border-red-200 ml-1">
+                  <Badge variant="outline" className="bg-red-50 text-destructive border-red-200 ml-1">
                     {knownFalseCount}
                   </Badge>
                 </div>
@@ -125,7 +120,7 @@ export  function VocabularyPageContent({
         </div>
 
         {/* Divider */}
-        <Separator orientation="vertical" className="hidden lg:block h-auto   bg-red-500" />
+        <Separator orientation="vertical" className="hidden lg:block min-h-[600px]" />
         <Separator className="lg:hidden my-4" />
 
         {/* Right side: Word List */}
@@ -139,7 +134,7 @@ export  function VocabularyPageContent({
             onWordSelect={onWordSelect}
             vocabularyStatusMap={vocabularyStatusMap}
           />
-          <PaginationCard  currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
+          <PaginationCard currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
         </div>
       </div>
     </div>
