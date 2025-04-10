@@ -1,54 +1,92 @@
-# React + TypeScript + Vite
+# Obenkyo Words
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![Obenkyo Words Hero](/public/images/hero-image.jpg)
 
-Currently, two official plugins are available:
+Una aplicación interactiva para aprender vocabulario japonés mediante tarjetas, organizada según los 5 niveles del Noken (JLPT).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tabla de Contenidos
 
-## Expanding the ESLint configuration
+- [Obenkyo Words](#obenkyo-words)
+  - [Tabla de Contenidos](#tabla-de-contenidos)
+  - [Descripción](#descripción)
+  - [Tecnologías](#tecnologías)
+  - [Instalación](#instalación)
+  - [Ejecución y Desarrollo](#ejecución-y-desarrollo)
+  - [Construcción para Producción](#construcción-para-producción)
+  - [Contribuir](#contribuir)
+  - [Licencia](#licencia)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Descripción
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+**Obenkyo Words** es una aplicación web diseñada para ayudarte a dominar el vocabulario japonés de forma práctica y divertida. Utilizando tarjetas de estudio, la aplicación agrupa el vocabulario en los 5 niveles del Noken (JLPT), facilitando así un aprendizaje progresivo y enfocado. La interfaz moderna y dinámica permite:
+
+- Repasar palabras clave de cada nivel.
+- Evaluar tu progreso mediante modos de práctica interactiva.
+- Visualizar el progreso de aprendizaje en tiempo real.
+
+Esta herramienta es ideal tanto para principiantes como para estudiantes avanzados que desean mejorar su dominio del idioma japonés.
+
+## Tecnologías
+
+El proyecto se ha desarrollado utilizando:
+
+- **React**: Para construir una interfaz de usuario interactiva.
+- **TypeScript**: Para un código más robusto y mantenible.
+- **Vite**: Entorno de desarrollo rápido y eficiente.
+- **ESLint**: Garantizando la calidad y consistencia del código.
+- **Babel/SWC**: Integrados con Vite para mejorar la experiencia en el desarrollo.
+- **react-router-dom**: Manejo de rutas y navegación.
+- **shadcn UI**: Componentes UI modernos y personalizables.
+
+## Instalación
+
+1. Clona el repositorio:
+   ```bash
+   git clone <url-del-repositorio>
+   ```
+2. Navega a la carpeta del proyecto:
+   ```bash
+   cd Obenkyo-Words
+   ```
+3. Instala las dependencias:
+   ```bash
+   pnpm install
+   ```
+
+## Ejecución y Desarrollo
+
+Para iniciar el servidor de desarrollo con Hot Module Replacement (HMR), ejecuta:
+
+```bash
+pnpm dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Accede a la aplicación en `http://localhost:3000` (o el puerto configurado en tu entorno).
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Construcción para Producción
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+Genera los archivos optimizados para producción ejecutando:
+
+```bash
+pnpm build
 ```
+
+Para previsualizar la versión en producción, utiliza:
+
+```bash
+pnpm serve
+```
+
+## Contribuir
+
+Las contribuciones son bienvenidas. Para contribuir:
+
+1. Realiza un fork del repositorio.
+2. Crea tu feature branch: `git checkout -b feature/mi-nueva-funcionalidad`.
+3. Realiza commit de tus cambios con mensajes claros.
+4. Realiza un push a tu branch: `git push origin feature/mi-nueva-funcionalidad`.
+5. Abre un Pull Request explicando tus cambios.
+
+## Licencia
+
+Distribuido bajo la licencia MIT. Consulta el archivo [LICENSE](./LICENSE) para más información.
