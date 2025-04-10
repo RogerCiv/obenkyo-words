@@ -27,7 +27,7 @@ export function Hero() {
               <Button
                 asChild
                 size="lg"
-                className="w-full sm:w-auto bg-primary hover:bg-primary/90 transition-all duration-300 hover:shadow-lg text-foreground font-semibold"
+                className="w-full sm:w-auto bg-primary hover:bg-primary/90 transition-all duration-300 hover:shadow-lg text-white font-semibold"
               >
                 <Link to="/register">Comienza a aprender</Link>
               </Button>
