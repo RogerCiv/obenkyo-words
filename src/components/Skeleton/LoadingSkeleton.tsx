@@ -22,16 +22,16 @@ export  function LoadingSkeleton(props: LoadingSkeletonProps) {
         <div className="w-full lg:w-1/2">
           {/* Skeleton para la lista de palabras simulada */}
           <div className="bg-base-200 rounded-box shadow-md p-4">
-            <Skeleton className="h-6 w-40 mb-4 bg-gray-200" />
+            <Skeleton className="h-6 w-40 mb-4 bg-accent" />
             <ul className="space-y-2">
               {[...Array(5)].map((_, i) => (
-                <Skeleton key={i} className="h-14 w-full bg-gray-200" />
+                <Skeleton key={i} className="h-14 w-full bg-accent" />
               ))}
             </ul>
           </div>
           {/* Skeleton para paginación */}
           <div className="mt-4">
-            <Skeleton className="h-8 w-full bg-gray-200" />
+            <Skeleton className="h-8 w-full bg-accent" />
           </div>
         </div>
       </div>
