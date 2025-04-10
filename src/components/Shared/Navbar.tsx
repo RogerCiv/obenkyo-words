@@ -72,6 +72,7 @@ const Navbar = ({
           <div className="flex items-center gap-6">
             {/* Logo */}
             <Logo />
+          </div>
             <div className="flex items-center">
               <NavigationMenu>
                 <NavigationMenuList>
@@ -79,7 +80,6 @@ const Navbar = ({
                 </NavigationMenuList>
               </NavigationMenu>
             </div>
-          </div>
           <div className="flex items-center justify-center gap-4">
             <ModeToggle />
             {user ? (
@@ -154,7 +154,7 @@ const renderMenuItem = (item: MenuItem) => {
     return (
       <NavigationMenuItem key={item.title}>
         <NavigationMenuTrigger className="font-semibold">
-          {item.title}
+          {item.title} 
         </NavigationMenuTrigger>
         <NavigationMenuContent className="bg-popover text-popover-foreground">
           {item.items.map((subItem) => (
@@ -171,7 +171,7 @@ const renderMenuItem = (item: MenuItem) => {
     <NavigationMenuItem key={item.title}>
       <NavigationMenuLink
         asChild
-        className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm  transition-colors hover:bg-muted hover:text-secondary font-semibold"
+        className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm  transition-colors hover:bg-accent hover:text-foreground/70 font-semibold"
       >
         <Link to={item.url}>{item.title}</Link>
       </NavigationMenuLink>
