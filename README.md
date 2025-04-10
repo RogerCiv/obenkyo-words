@@ -42,11 +42,11 @@ El proyecto se ha desarrollado utilizando:
 
 1. Clona el repositorio:
    ```bash
-   git clone <url-del-repositorio>
+   git clone https://github.com/RogerCiv/obenkyo-words
    ```
 2. Navega a la carpeta del proyecto:
    ```bash
-   cd Obenkyo-Words
+   cd obenkyo-Words
    ```
 3. Instala las dependencias:
    ```bash
