@@ -14,8 +14,8 @@ export function StudyCalendar({ dates }: StudyCalendarProps) {
 
   // En este caso, queremos que los días recibidos aparezcan seleccionados, por lo que usamos "multiple"
   return (
-    <div className="">
-        <p>Dias en los que has aprendido</p>
+    <div className="flex flex-col justify-center items-center gap-4 ">
+      <p>Dias en los que has aprendido</p>
       <Calendar
         mode="multiple"
         selected={highlightedDates}
