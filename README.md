@@ -1,6 +1,6 @@
 # Obenkyo Words
 
-![Obenkyo Words Hero](/public/images/hero-image.jpg)
+![Obenkyo Words Hero](/public/images/hero-image.webp)
 
 Una aplicación interactiva para aprender vocabulario japonés mediante tarjetas, organizada según los 5 niveles del Noken (JLPT).
 
