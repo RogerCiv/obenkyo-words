@@ -73,6 +73,13 @@ const useVocabularyStatus = ({ level, currentCard }: UseVocabularyStatusProps = 
     }
   }, [user, level]);
 
+  // Función auxiliar para actualizar los días de estudio
+  const updateStudyDays = () => {
+    const nowISO = new Date().toISOString();
+    const day = new Date(nowISO).toISOString().slice(0, 10);
+    setStudyDays(prev => prev.includes(day) ? prev : [...prev, day]);
+  };
+
   const markAsKnown = async () => {
     if (currentCard && userId) {
       const { error } = await supabase
@@ -87,12 +94,8 @@ const useVocabularyStatus = ({ level, currentCard }: UseVocabularyStatusProps = 
       if (!error) {
         setKnownStatus(true);
         setWordsStatusMap(prev => ({ ...prev, [currentCard.expression]: true }));
-        const nowISO = new Date().toISOString();
-        // setLastUpdatedMap(prev => ({ ...prev, [currentCard.expression]: nowISO }));
-        setStudyDays(prev => {
-          const day = new Date(nowISO).toISOString().slice(0, 10);
-          return prev.includes(day) ? prev : [...prev, day];
-        });
+        
+        updateStudyDays();
       }
     }
   };
@@ -111,11 +114,8 @@ const useVocabularyStatus = ({ level, currentCard }: UseVocabularyStatusProps = 
       if (!error) {
         setKnownStatus(false);
         setWordsStatusMap(prev => ({ ...prev, [currentCard.expression]: false }));
-        const nowISO = new Date().toISOString();
-        setStudyDays(prev => {
-          const day = new Date(nowISO).toISOString().slice(0, 10);
-          return prev.includes(day) ? prev : [...prev, day];
-        });
+        
+        updateStudyDays();
       }
     }
   };
