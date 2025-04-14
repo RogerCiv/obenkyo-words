@@ -67,7 +67,7 @@ export function Hero() {
             <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-accent/20 rounded-2xl blur-3xl opacity-30 -z-10 transform -rotate-6"></div>
             <div className="relative overflow-hidden rounded-2xl shadow-2xl">
               <img
-                src="/images/hero-image.jpg"
+                src="/images/hero-image.webp"
                 alt="Aprendizaje de japonés con Nokens"
                 className="w-full h-auto object-cover aspect-[4/3] hover:scale-105 transition-transform duration-700"
               />
