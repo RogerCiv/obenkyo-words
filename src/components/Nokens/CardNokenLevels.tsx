@@ -2,17 +2,13 @@
 
 import { useNavigate } from "react-router-dom"
 import { Button } from "@/components/ui/button"
+import { NokenLevel } from "@/data/nokens"
 
 interface CardNokenLevelsProps {
-  levelCard: {
-    level: string
-    title: string
-    image: string
-    description: string
-  }
+  levelCard: NokenLevel
 }
 
-export  function CardNokenLevels({ levelCard }: CardNokenLevelsProps) {
+export function CardNokenLevels({ levelCard }: CardNokenLevelsProps) {
   const navigate = useNavigate()
 
   const handleEntrar = () => {
